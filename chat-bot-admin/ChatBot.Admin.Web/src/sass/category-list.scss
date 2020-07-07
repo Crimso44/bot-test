@@ -1,0 +1,74 @@
+.category-list{
+    /* Размеры виджета для портала */
+      margin: 92px auto;
+      width: 1000px;
+      box-sizing: content-box;
+    
+      &__filter
+      {
+        background: #ffffff;
+        border-top: 1px solid #D8D8D8;
+        border-bottom: 1px solid #D8D8D8;
+        margin: 20px 0;
+        padding: 20px 0;
+      }
+      &__top_container
+      {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+      }
+
+      &__sorting
+      {
+      
+        width: 378x;
+        
+      }
+      
+      &__paginator{
+        margin-top: 10px;
+      }
+
+      &__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+      }
+      
+      &__loader-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        cursor: wait;
+      }
+    
+      &__loader-fade {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0.6;
+        background-color: white;
+      }
+    
+      &__loader {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+    
+  .list{
+    margin-top: 10px;
+      .uavp-button{
+      padding: 0 10px !important;
+    }
+    
+  }
+}

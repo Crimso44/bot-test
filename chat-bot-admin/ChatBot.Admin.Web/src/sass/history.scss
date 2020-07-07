@@ -1,0 +1,68 @@
+.history-filters {
+    display: flex;
+
+    .uavp-grid
+    {
+      width: 100%;
+    }
+
+}
+
+
+.history-filters-cell {
+    margin: 4px;
+}
+
+.history-answered-ml, .history-answered-ml .uavp-checkbox__label {
+    background-color: #eeffee;
+    color: green;
+}
+
+.history-answered-eve, .history-answered-eve .uavp-checkbox__label {
+    background-color: #eeffee;
+    color: black;
+}
+
+.history-answered-button, .history-answered-button .uavp-checkbox__label {
+    background-color: #eeffee;
+    color: #888888;
+}
+
+.history-answered-no, .history-answered-no .uavp-checkbox__label {
+    background-color: #ffeeee;
+    color: black;
+}
+
+.history-answered-other, .history-answered-other .uavp-checkbox__label {
+    background-color: #eeeeee;
+    color: black;
+}
+
+.history-ml-yes, .history-ml-yes .uavp-checkbox__label {
+    font-weight: bold;
+    color: red;
+}
+
+.history-ml-answer, .history-ml-answer .uavp-checkbox__label {
+    font-weight: bold;
+    color: green;
+}
+
+.history-ml-wrong, .history-ml-wrong .uavp-checkbox__label {
+    font-weight: bold;
+    color: red;
+}
+
+.history-ml-no, .history-ml-no .uavp-checkbox__label {
+    color: black;
+}
+
+.history-dialog-select {
+    width: 480px;
+    margin: 4px;
+}
+
+.pattern-dialog-select {
+    width: 99%;
+    margin: 4px;
+}

@@ -1,0 +1,142 @@
+.category-edit{
+    /* Размеры виджета для портала */
+      margin: 92px auto;
+      width: 1000px;
+      box-sizing: content-box;
+      overflow: hidden;
+
+      &__head{
+        justify-content: space-between; 
+        display: flex;
+      }
+      &__switch{
+        width: 15% !important; 
+      }
+      &__about, &__about div
+      {
+        font-size: 12px;
+        color:#898B95;
+      }
+      &__buttons
+      {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        .uavp-grid
+        {
+          width: 100%;
+        }
+        .buttons-left {
+          div{
+            margin-right: 4px;
+            float: left;
+          }
+        }
+      
+        .buttons-right {
+          div{
+            margin-left: 4px;
+            float: right;
+          }
+        }
+      
+      }
+
+      &__filter
+      {
+        background: #ffffff;
+        border-top: 1px solid #D8D8D8;
+        border-bottom: 1px solid #D8D8D8;
+        margin: 8px 0 16px 0;
+        padding: 5px 5px 30px 5px;
+
+        .preview{
+          min-height: 95px;
+          width: 300px;;
+          border: 1px solid #D8D8D8;
+          border-radius: 2px;
+          background: #fff;
+          color: #3a405b;
+          padding: 7px 16px 7px 12px;
+          outline: none;
+          font-size: 12px;
+          line-height: 1.33;
+          margin-left: 95px;
+          a {
+            color: #3f8ee2;
+            text-decoration: none;
+            font-weight: bold;
+          }
+        }
+        &_checkbox {
+          margin-top: 36px;
+        }
+        .first-col {
+          height: 100%;
+        }
+        .uavp-textarea {
+          height: 100%;
+        }
+        .uavp-textarea textarea {
+          height: 100%;
+        }
+      }
+      &__pattern
+      {
+        background: #ffffff;
+        border-top: 1px solid #D8D8D8;
+        border-bottom: 1px solid #D8D8D8;
+        margin: 8px 0;
+        padding: 5px;
+
+        .uavp-grid
+        {
+            padding: 10px 0 50px 0;
+            border-bottom: 1px solid #D8D8D8;
+        }
+        
+        .uavp-registry-plate {
+            padding: 2px 24px;
+        }
+
+        &__active{
+            border-left: 4px solid #2BB563;
+            .uavp-registry-plate:hover {
+              border-left: 4px solid #ffffff
+            }
+          
+        }
+        &__button{
+          display: flex;
+          width: 200px;
+          justify-content: space-between;
+        }
+      }
+
+      
+
+      
+
+
+    
+      
+      .switch{
+        margin-top: 37px;
+        div{
+          float: right;
+        }
+      }
+    
+      .first-col{
+        margin-top: 10px;
+       // margin-left: -12px;
+      }
+
+
+      
+      
+
+  
+}
+
+

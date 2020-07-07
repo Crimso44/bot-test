@@ -1,0 +1,4 @@
+{
+    "USEFUL_CHAT_API_HOST": "//localhost:8089/_api/sbot",
+    "USEFUL_EMPLOYEE_API_HOST": "//localhost:8089/_api/roster"
+}

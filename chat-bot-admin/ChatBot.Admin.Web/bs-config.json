@@ -1,0 +1,5 @@
+{ "injectChanges": false,
+  "browser" : "C:/Users/sbt-baula1-av/Desktop/chrome dev.lnk",
+  "files": [ "./**/*.{html,htm,css,js}" ],
+  "watchOptions": { "ignored": "node_modules" },
+  "server": { "baseDir": "./dist", "middleware": [  ] } }

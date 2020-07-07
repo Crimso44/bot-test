@@ -1,0 +1,4 @@
+{
+    "USEFUL_CHAT_API_HOST": "//new.sbt-osop-226.sigma.sbrf.ru:4444/_api/sbot",
+    "USEFUL_EMPLOYEE_API_HOST": "//new.sbt-osop-226.sigma.sbrf.ru:4444/_api/roster"
+}

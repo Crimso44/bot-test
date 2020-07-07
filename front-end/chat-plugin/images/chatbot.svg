@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="89" viewBox="0 0 48 89">
+    <defs>
+        <linearGradient id="b" x1="0%" x2="95.628%" y1="37.625%" y2="37.625%">
+            <stop offset="0%" stop-color="#7CE763"/>
+            <stop offset="100%" stop-color="#47DC91"/>
+        </linearGradient>
+        <path id="a" d="M9.113 3.675C2.114 7.972-.682 19.693.139 21.004c.547.874 3.95-.155 10.207-3.088l.103-.136C11.925 24.208 17.653 29 24.495 29c6.686 0 12.31-4.578 13.939-10.786 5.849 2.704 8.894 2.875 9.423 2.03.82-1.31-1.851-12.38-8.782-16.717C34.465.64 29.224.262 24.141 0 21.855-.02 13.778.81 9.113 3.675z"/>
+        <linearGradient id="c" x1="50%" x2="50%" y1="3.497%" y2="96.586%">
+            <stop offset="0%" stop-color="#3F8E48"/>
+            <stop offset="100%" stop-color="#59C065" stop-opacity=".258"/>
+        </linearGradient>
+        <linearGradient id="e" x1="22.059%" x2="57.97%" y1="19.362%" y2="93.773%">
+            <stop offset="0%" stop-color="#7CE763"/>
+            <stop offset="100%" stop-color="#47DC91"/>
+        </linearGradient>
+        <path id="f" d="M16 20a8 8 0 1 0 0 16h16a8 8 0 1 0 0-16H16z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <ellipse cx="24" cy="87" fill="#DDD" rx="21" ry="2"/>
+        <g transform="translate(0 51)">
+            <mask id="d" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <use fill="url(#b)" xlink:href="#a"/>
+            <path fill="url(#c)" d="M12.937 1.962c-.176.162-.966.751.26 1.205.753.46 9.629-.773 10.803.814.067.09.126.218.185.378.663 1.784.214 24.625.315 24.641 6.57 1.074 12.383-4.58 14.021-10.791 5.884 2.705 8.948 2.959 9.479 2.115.826-1.312-1.861-12.47-8.833-16.81C34.529.627 29.257.248 24.144-.014c-1.12-.01-3.79.241-6.22.675-2.558.457-4.812 1.138-4.987 1.3z" mask="url(#d)" opacity=".523"/>
+            <circle cx="18" cy="8" r="2" fill="#FFF" mask="url(#d)"/>
+        </g>
+        <path fill="#6EE46F" d="M0 25l7-4-.304 16L0 33z"/>
+        <path fill="#48BD73" d="M48 25l-7-4 .304 16L48 33z"/>
+        <g transform="translate(4 9)">
+            <rect width="40" height="40" fill="url(#e)" rx="20"/>
+            <path fill="#388554" d="M20 0c11.046 0 20 8.954 20 20s-8.954 20-20 20V0z" opacity=".379"/>
+        </g>
+        <mask id="g" fill="#fff">
+            <use xlink:href="#f"/>
+        </mask>
+        <use fill="#19152D" xlink:href="#f"/>
+        <path fill="#292345" d="M16 22a8 8 0 1 0 0 16h16a8 8 0 1 0 0-16H16z" mask="url(#g)"/>
+        <path fill="#19152D" d="M24 36.994h8.003a7.997 7.997 0 0 0 0-15.994h-8.001c-.002 0 0 15.994-.002 15.994z" mask="url(#g)"/>
+        <circle cx="16.5" cy="26.5" r="2.5" fill="#FFF" mask="url(#g)"/>
+        <circle cx="16.5" cy="26.5" r="1.5" fill="#292345" mask="url(#g)"/>
+        <circle cx="31.5" cy="26.5" r="2.5" fill="#FFF" mask="url(#g)"/>
+        <circle cx="31.5" cy="26.5" r="1.5" fill="#19152D" mask="url(#g)"/>
+        <path fill="#FFF" d="M24 33a3 3 0 0 0 3-3c-.017.015-5.994 0-6 0a3 3 0 0 0 3 3z" mask="url(#g)"/>
+    </g>
+</svg>

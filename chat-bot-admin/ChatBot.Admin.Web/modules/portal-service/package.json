@@ -1,0 +1,8 @@
+{
+    "name": "portal-service",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.ts",
+    "author": "sbt-chertorylskiy-is",
+    "license": "ISC"
+}

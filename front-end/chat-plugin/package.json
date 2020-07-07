@@ -1,0 +1,23 @@
+{
+  "name": "front-end-chat-plugin",
+  "version": "1.0.9",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@10.21.25.60:8878/sbtlife/front-end-bonus-widget.git"
+  },
+  "author": "sbt-ermakova-ya",
+  "license": "ISC",
+  "pluginConfig": {
+    "id": "06205002-CC48-490E-95CE-92671D39AECA",
+    "displayName": "Чат-бот",
+    "name": "chat-plugin",
+    "place": "layout",
+    "version": "1.0.9",
+    "previewImage": "preview.png"
+  }
+}

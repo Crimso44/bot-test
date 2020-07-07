@@ -1,0 +1,90 @@
+@import 'colors';
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('//uavp-fonts.sbt-life.sberbank.ru/Roboto-Regular.ttf') format('truetype');
+  font-weight: 500; 
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('//uavp-fonts.sbt-life.sberbank.ru/Roboto-Medium.ttf') format('truetype');
+  font-weight: 600; 
+}
+
+.chat-bot__chat-medium
+{
+	display: none;
+}
+
+$font-family: 'Roboto', sans-serif;
+.container-main
+{
+  top:-50px !important;
+}
+.container-main__head
+{
+  display: none !important;
+}
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+
+  max-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 0;
+
+  z-index: -1;
+
+  transition:
+    visibility 0s 3s,
+    opacity .2s linear, /* Сначала исчезает, потом меняет размер */
+
+    max-height .2s .1s,
+    margin .2s .1s,
+    padding .2s .1s,
+    font-size .2s .1s;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+
+  max-height: 3000px; /* Больше, чем предполагаемая высота самого большого контейнера*/
+
+  z-index: 0;
+
+  transition:
+    visibility 0s,
+    opacity .2s linear .1s, /* Сначала меняет размер, потом появляется */
+
+    max-height .2s,
+    margin .2s,
+    padding .2s,
+    font-size .2s;
+}
+
+.chevron {
+    border-style: solid;
+    border-width: 0.1em 0.1em 0 0;
+    content: '';
+    display: inline-block;
+    height: 0.35em;
+    left: 0.15em;
+    position: relative;
+    vertical-align: top;
+    width: 0.35em;
+}
+
+.arrow {
+  width: 0; 
+  height: 0; 
+  border-left: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
+
+  border-top: 0.3em solid;
+}
