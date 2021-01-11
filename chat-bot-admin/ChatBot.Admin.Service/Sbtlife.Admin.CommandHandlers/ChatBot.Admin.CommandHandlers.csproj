@@ -3,14 +3,12 @@
   <PropertyGroup>
     <ProjectGuid>{41C27E97-436A-4494-ACCB-BD01B97F0450}</ProjectGuid>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="7.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
-    <PackageReference Include="Um.Connect.Abstractions" Version="1.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>

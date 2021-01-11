@@ -18,7 +18,7 @@ export class ItemQuery {
             this.authService.getToken().then(token =>
                 {
                     var fullUri = `${this.baseUri ? this.baseUri + '/' : ''}${this.uri}/${id}`;
-
+                    console.log('execute', fullUri);
                     Axios
                         .get(fullUri,
                             { withCredentials: true })

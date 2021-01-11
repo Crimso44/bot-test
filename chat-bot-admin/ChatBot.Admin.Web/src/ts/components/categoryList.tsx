@@ -178,7 +178,7 @@ class CategoryListApp extends MainElement<ICategoryListProps, ICategoryListState
 
             return (
                 <div className={value.isChanged || value.isAdded ? 'category-changed' : 'category-unchanged'} key={value.id}>
-                    <a href={`/#${Const.NavigationPathCategoryItemEdit.replace(":id", value.id.toString())}`}>
+                    <a href={`${Const.NavigationPathCategoryItemEdit.replace(":id", value.id.toString())}`}>
                         <RegistryPlate 
                             spec={spec}
                             onClick={(e: any) => this.onListItemClick(value.id.toString())}
@@ -412,7 +412,7 @@ class CategoryListApp extends MainElement<ICategoryListProps, ICategoryListState
                                     id="isDisabled"
                                     isChecked={this.state.isDisabled}
                                     onChange={this.onCategoryIsDisabledChanged}
-                                    title="Отлюченные категории"
+                                    title="Отключенные категории"
                                 />
                             </div>
                         </Col>

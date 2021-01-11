@@ -3,7 +3,7 @@ using ChatBot.Admin.CommandHandlers.Factories.Abstractions.ChatBot;
 using ChatBot.Admin.Common.Model.ChatBot;
 using ChatBot.Admin.CommonServices.Services.Abstractions;
 using ChatBot.Admin.DomainStorage.Model.Abstractions.ChatBot;
-using Um.Connect.Abstractions;
+using SBoT.Connect.Abstractions.Interfaces;
 
 namespace ChatBot.Admin.CommandHandlers.Factories.ChatBot
 {

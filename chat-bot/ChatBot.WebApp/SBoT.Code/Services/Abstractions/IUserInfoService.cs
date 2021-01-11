@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Um.Connect.Abstractions;
+﻿using SBoT.Connect.Abstractions.Interfaces;
 
 namespace SBoT.Code.Services.Abstractions
 {

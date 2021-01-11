@@ -1,3 +1,4 @@
 {
-    "CHAT_BOT_ADMIN_HOST": "/_api_admin"
+    "CHAT_BOT_ADMIN_HOST": "/_chat_admin/_api_admin",
+    "CHAT_BOT_ROOT": "/_chat_admin"
 }

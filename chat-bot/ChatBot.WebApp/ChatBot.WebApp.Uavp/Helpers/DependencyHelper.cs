@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SBoT.Code.Uavp.Services;
+using SBoT.Code.Uavp.Services.Abstractions;
+using System;
 using System.Collections.Generic;
 
 namespace ChatBot.WebApp.Uavp.Helpers
@@ -24,7 +26,6 @@ namespace ChatBot.WebApp.Uavp.Helpers
         {
             return new Dictionary<Type, Type>
             {
-                //{typeof (IResponseHelper), typeof (ResponseHelper) },
             };
         }
     }

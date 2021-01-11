@@ -13,6 +13,7 @@ using SBoT.Code.Classes;
 using SBoT.Code.Entity.Interfaces;
 using SBoT.Code.Services.Abstractions;
 using Config = SBoT.Code.Classes.Config;
+using SBoT.Connect.Abstractions.Dto;
 
 namespace SBoT.Code.Repository
 {

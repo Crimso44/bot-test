@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SBoT.Code.Dto
+namespace SBoT.Connect.Abstractions.Dto
 {
     [DataContract]
     public class RosterDto
@@ -18,4 +18,5 @@ namespace SBoT.Code.Dto
         [DataMember(Name = "source")]
         public string Source { get; set; }
     }
+
 }

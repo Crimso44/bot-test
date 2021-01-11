@@ -15,14 +15,12 @@ using ChatBot.Admin.Common.Const;
 using ChatBot.Admin.WebApi.ExceptionFilters;
 using ChatBot.Admin.WebApi.Mapping;
 using ChatBot.Admin.WebApi.UserManagementMock;
-using Um.Abstractions.Core.Const;
-using Um.Connect.IdentityProviders;
-using Um.Connect.Mock;
-using Um.Connect.SqlServer;
 using CommandHandlersBootstrapper = ChatBot.Admin.CommandHandlers.CommandModuleBootstraper;
 using CommonServicesBootstrapper = ChatBot.Admin.CommonServices.CommonModuleBootstraper;
 using DomainStorageBootstrapper = ChatBot.Admin.DomainStorage.DomainModuleBootstraper;
 using ReadStorageBootstrapper = ChatBot.Admin.ReadStorage.ReadModuleBootstraper;
+using SBoT.Connect.Abstractions.Interfaces;
+using SBoT.Connect.Service;
 
 namespace ChatBot.Admin.WebApi
 {
@@ -107,19 +105,19 @@ namespace ChatBot.Admin.WebApi
 
         private void ConfigureUsers(IServiceCollection services)
         {
-            if (IsDevEnvironment())
+            /*if (IsDevEnvironment())
             {
                 var roles = new[] { new MockRole(
-                    //Um.Abstractions.ChatBot.RoleConst.ChatBotReports, ScopeConst.SberbankTechnology, Um.Abstractions.ChatBot.ApplicationConst.ChatBot
-                    Um.Abstractions.ChatBot.RoleConst.ChatBotAdministrator, ScopeConst.SberbankTechnology, Um.Abstractions.ChatBot.ApplicationConst.ChatBot
+                    RoleConst.ChatBotAdministrator, Guid.Empty, Guid.Empty
                 ) };
                 services.AddMockUserService(new Guid("793b3458-dee6-4103-a3c9-6850c62ec504"), "Тестов Тест Тестович", "sigma\\test", "test@test.com", roles);
                 return;
-            }
+            }*/
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddHttpContextIdentityProvider();
-            services.AddSqlServerUserService();
+            services.AddSingleton<IUser, UserService>();
+            //!!!services.AddHttpContextIdentityProvider();
+            //!!!services.AddSqlServerUserService();
         }
 
         private void AddCors(IServiceCollection services)

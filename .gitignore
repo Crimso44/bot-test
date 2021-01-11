@@ -3,3 +3,4 @@
 ################################################################################
 
 /.vs
+/chat-bot-clients/ChatBot.EveWinForms/packages/Newtonsoft.Json.12.0.3

@@ -11,9 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using SBoT.Code.Uavp.Classes;
-using CodeBootstrapper = SBoT.Code.Uavp.ModuleBootstraper;
-using DomainBootstrapper = SBoT.Domain.Uavp.ModuleBootstraper;
+using CodeBootstrapper = SBoT.Code.Uavp.ModuleBootstrapper;
 
 namespace ChatBot.WebApp.Uavp
 {
@@ -57,7 +55,6 @@ namespace ChatBot.WebApp.Uavp
                     ConfigureUsers(services);
 
                     CodeBootstrapper.Configure(Configuration, services);
-                    DomainBootstrapper.Configure(Configuration, services);
 
                     services
                         .AddMvc(o => { o.Filters.Add(typeof(GlobalExceptionFilterAttribute)); })

@@ -1,1 +1,2 @@
 export const CHAT_BOT_ADMIN_HOST = "@@CHAT_BOT_ADMIN_HOST";
+export const CHAT_BOT_ROOT = "@@CHAT_BOT_ROOT";

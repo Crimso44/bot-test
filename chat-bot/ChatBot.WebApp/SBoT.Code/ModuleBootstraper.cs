@@ -36,8 +36,6 @@ namespace SBoT.Code
             serviceCollection.AddScoped<ISboTRepository, SBoTRepository>();
             serviceCollection.AddTransient<ISboTRepositoryTransient, SBoTRepositoryTransient>();
 
-            serviceCollection.AddScoped<IUsefulLinksRepository, UsefulLinksRepository>();
-
             serviceCollection.AddScoped<ITimeMeasurer, TimeMeasurer>();
 
             RegisterBusDependencies(configuration, serviceCollection);

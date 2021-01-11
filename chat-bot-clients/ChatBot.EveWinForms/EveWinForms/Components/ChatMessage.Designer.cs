@@ -53,8 +53,8 @@
             this.picDislikeOff = new System.Windows.Forms.PictureBox();
             this.picLikeOn = new System.Windows.Forms.PictureBox();
             this.picLikeOff = new System.Windows.Forms.PictureBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.lText = new Eve.TextBoxEx();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEveNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEveYes)).BeginInit();
@@ -84,6 +84,7 @@
             this.picEveNo.Location = new System.Drawing.Point(10, 5);
             this.picEveNo.Name = "picEveNo";
             this.picEveNo.Size = new System.Drawing.Size(40, 40);
+            this.picEveNo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picEveNo.TabIndex = 1;
             this.picEveNo.TabStop = false;
             this.picEveNo.Visible = false;
@@ -94,6 +95,7 @@
             this.picEveYes.Location = new System.Drawing.Point(10, 5);
             this.picEveYes.Name = "picEveYes";
             this.picEveYes.Size = new System.Drawing.Size(40, 40);
+            this.picEveYes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picEveYes.TabIndex = 0;
             this.picEveYes.TabStop = false;
             this.picEveYes.Visible = false;
@@ -114,7 +116,7 @@
             this.lEveSendTime.ForeColor = System.Drawing.Color.Gray;
             this.lEveSendTime.Location = new System.Drawing.Point(3, 3);
             this.lEveSendTime.Name = "lEveSendTime";
-            this.lEveSendTime.Size = new System.Drawing.Size(20, 16);
+            this.lEveSendTime.Size = new System.Drawing.Size(24, 17);
             this.lEveSendTime.TabIndex = 1;
             this.lEveSendTime.Text = "    ";
             // 
@@ -222,14 +224,6 @@
             this.picLikeOff.TabStop = false;
             this.picLikeOff.Click += new System.EventHandler(this.picLikeOn_Click);
             // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(548, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(10, 150);
-            this.panel3.TabIndex = 1;
-            // 
             // lText
             // 
             this.lText.BackColor = System.Drawing.Color.White;
@@ -242,6 +236,14 @@
             this.lText.TabIndex = 0;
             this.lText.Text = "...";
             this.lText.TextChanged += new System.EventHandler(this.lText_TextChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(548, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(10, 150);
+            this.panel3.TabIndex = 1;
             // 
             // ChatMessage
             // 

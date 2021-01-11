@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using SBoT.Code.Classes;
 using SBoT.Code.Dto;
 using SBoT.Code.Entity.Interfaces;
 using SBoT.Code.Services.Abstractions;
-using Um.Connect.Abstractions;
+using SBoT.Connect.Abstractions.Dto;
+using SBoT.Connect.Abstractions.Interfaces;
 
 namespace SBoT.Code.Services
 {
@@ -41,7 +40,7 @@ namespace SBoT.Code.Services
                 else
                 {
                     var us = _request.WebApiRequestGet<UserDtoSerializable>($"{_urls.Value.ChatInfo}/info/user", new Dictionary<string, object> {{"sigmaLogin", sigmaLogin}});
-                    _currentUser = new UserDto() { Id = us.Id, Name = us.Name, SigmaEmail = us.SigmaEmail, SigmaLogin = us.SigmaLogin, Roles = us.Roles.ToList<IRole>() };
+                    _currentUser = new UserDto() { Id = us.Id, Name = us.Name, SigmaEmail = us.SigmaEmail, SigmaLogin = us.SigmaLogin, Roles = us.Roles?.ToList<IRole>() };
                 }
             }
             return _currentUser;
@@ -49,8 +48,9 @@ namespace SBoT.Code.Services
 
         public void SetCurrentUserByMail(string mail)
         {
+            if (string.IsNullOrEmpty(_urls.Value.ChatInfo)) return;
             var us = _request.WebApiRequestGet<UserDtoSerializable>($"{_urls.Value.ChatInfo}/info/user", new Dictionary<string, object> { { "sigmaLogin", mail } });
-            _currentUser = new UserDto() { Id = us.Id, Name = us.Name, SigmaEmail = us.SigmaEmail, SigmaLogin = us.SigmaLogin, Roles = us.Roles.ToList<IRole>() };
+            _currentUser = new UserDto() { Id = us.Id, Name = us.Name, SigmaEmail = us.SigmaEmail, SigmaLogin = us.SigmaLogin, Roles = us.Roles?.ToList<IRole>() };
         }
     }
 }

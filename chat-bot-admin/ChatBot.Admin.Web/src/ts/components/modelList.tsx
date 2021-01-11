@@ -375,7 +375,7 @@ class ModelApp extends MainElement<IModelProps, IModelState>{
                                             <span title={'<' + (conf.categoryName || conf.originId || 'Нет')+ '>' + hint} 
                                                 style={{'background': ind ? 'rgb(255, 224, 224)' : 'rgb(224, 255, 224)', 'textAlign': 'center' }}>
                                                 {conf.categoryId ?
-                                                    <a target="_blank" href={`/#${Const.NavigationPathCategoryItemEdit.replace(":id", conf.categoryId.toString())}`}>
+                                                    <a target="_blank" href={`${Const.NavigationPathCategoryItemEdit.replace(":id", conf.categoryId.toString())}`}>
                                                         {conf.confusion}
                                                     </a> :
                                                     conf.confusion
@@ -399,7 +399,7 @@ class ModelApp extends MainElement<IModelProps, IModelState>{
                                             <span title={'<' + (conf.categoryName || conf.originId || 'Нет')+ '>' + hint} 
                                                 style={{'background': ind ? 'rgb(255, 224, 224)' : 'rgb(224, 255, 224)', 'textAlign': 'center' }}>
                                                 {conf.categoryId ?
-                                                    <a target="_blank" href={`/#${Const.NavigationPathCategoryItemEdit.replace(":id", conf.categoryId.toString())}`}>
+                                                    <a target="_blank" href={`${Const.NavigationPathCategoryItemEdit.replace(":id", conf.categoryId.toString())}`}>
                                                         {conf.confusion}
                                                     </a> :
                                                     conf.confusion

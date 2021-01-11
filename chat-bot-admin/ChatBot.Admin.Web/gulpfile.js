@@ -37,6 +37,8 @@ var path = {
     FONTS_DIST: 'dist/fonts',
     INDEX_SRC: 'src/index.html',
     INDEX_DIST: 'dist',
+    WEB_SRC: 'src/web.config',
+    WEB_DIST: 'dist',
     LIB_DIST: 'lib.js',
     VENDORS: [
         'react',
@@ -194,18 +196,23 @@ gulp.task('html', function () {
         .pipe(htmlreplace({
             'js': {
                 src: filenames.get("js")[0],
-                tpl: '<script src="/js/%s"></script>'
+                tpl: '<script src="/_chat_admin/js/%s"></script>'
             },
             'lib': {
                 src: filenames.get("lib")[0],
-                tpl: '<script src="/js/%s"></script>'
+                tpl: '<script src="/_chat_admin/js/%s"></script>'
             },
             'css': {
                 src: filenames.get("css")[0],
-                tpl: '<link rel="stylesheet" type="text/css" href="/styles/%s">'
+                tpl: '<link rel="stylesheet" type="text/css" href="/_chat_admin/styles/%s">'
             },
         }))
         .pipe(gulp.dest(path.INDEX_DIST));
+});
+
+gulp.task('web', function () {
+    return gulp.src(path.WEB_SRC)
+        .pipe(gulp.dest(path.WEB_DIST));
 });
 
 gulp.task('html-dev', function () {
@@ -213,15 +220,15 @@ gulp.task('html-dev', function () {
         .pipe(htmlreplace({
             'js': {
                 src: "app.js",
-                tpl: '<script src="/js/%s"></script>'
+                tpl: '<script src="/_chat_admin/js/%s"></script>'
             },
             'lib': {
                 src: "lib.js",
-                tpl: '<script src="/js/%s"></script>'
+                tpl: '<script src="/_chat_admin/js/%s"></script>'
             },
             'css': {
                 src: "main.css",
-                tpl: '<link rel="stylesheet" type="text/css" href="/styles/%s">'
+                tpl: '<link rel="stylesheet" type="text/css" href="/_chat_admin/styles/%s">'
             },
         }))
         .pipe(gulp.dest(path.INDEX_DIST));
@@ -263,8 +270,8 @@ gulp.task('prod', function () {
         .pipe(filenames("js"));
 });
 
-gulp.task('dev-build', gulp.series('dev', 'sass-dev', 'lib-dev', 'html-dev', 'copy-fonts', 'copy-images', 'copy-css', 'vendors'));
-gulp.task('prod-build', gulp.series('prod', 'lib', 'sass', 'html', 'copy-fonts', 'copy-images', 'copy-css', 'vendors'));
+gulp.task('dev-build', gulp.series('dev', 'sass-dev', 'lib-dev', 'html-dev', 'web', 'copy-fonts', 'copy-images', 'copy-css', 'vendors'));
+gulp.task('prod-build', gulp.series('prod', 'lib', 'sass', 'html', 'web', 'copy-fonts', 'copy-images', 'copy-css', 'vendors'));
 
 gulp.task('build:dev', gulp.series('clean', 'dev-build'));
 gulp.task('build:prod', gulp.series('clean', 'prod-build'));

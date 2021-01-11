@@ -59,7 +59,7 @@ namespace ChatBot.Admin.CommandHandlers.Handlers.Implementations.ChatBot
             }
 
             var words =  _categoryProvider.GetWordsForIndex();
-            _elasticService.ReindexWords(words);
+            //!!!_elasticService.ReindexWords(words);
 
             return Ok(MessageConst.CategoryPublished);
         }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SBoT.Code.Dto;
 using SBoT.Code.Repository.Interfaces;
 using SBoT.Code.Services.Abstractions;
-using Um.Connect.Abstractions;
 
 namespace SBoT.Code.Services
 {

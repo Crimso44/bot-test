@@ -1,9 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <ProjectGuid>{492B26BE-21CD-4103-9B8C-9B6013CDE2C0}</ProjectGuid>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>b55de579-0f9b-4788-9988-3afc40c5cd8e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,14 +22,10 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="AutoMapper" Version="6.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.23" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.0.2" />
-    <PackageReference Include="Um.Abstractions.Core" Version="2.6.4" />
-    <PackageReference Include="Um.Connect.Abstractions" Version="1.0.3" />
-    <PackageReference Include="Um.Connect.IdentityProviders" Version="1.0.7" />
-    <PackageReference Include="Um.Connect.Mock" Version="1.1.1" />
-    <PackageReference Include="Um.Connect.SqlServer" Version="1.1.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SBoT.Connect.Service\SBoT.Connect.Service.csproj" />
     <ProjectReference Include="..\Sbtlife.Admin.CommandHandlers\ChatBot.Admin.CommandHandlers.csproj" />
     <ProjectReference Include="..\Sbtlife.Admin.Common\ChatBot.Admin.Common.csproj" />
     <ProjectReference Include="..\Sbtlife.Admin.ReadStorage\ChatBot.Admin.ReadStorage.csproj" />

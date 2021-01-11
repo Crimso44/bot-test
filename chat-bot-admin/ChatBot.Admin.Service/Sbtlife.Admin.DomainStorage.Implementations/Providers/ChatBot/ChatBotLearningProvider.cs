@@ -16,9 +16,9 @@ using ChatBot.Admin.DomainStorage.Contexts;
 using ChatBot.Admin.DomainStorage.Contexts.Entities.ChatBot;
 using ChatBot.Admin.DomainStorage.Providers.Abstractions.ChatBot;
 using ChatBot.Admin.DomainStorage.Providers.Abstractions.DocumentStorage;
-using Um.Connect.Abstractions;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
+using SBoT.Connect.Abstractions.Interfaces;
 
 namespace ChatBot.Admin.DomainStorage.Providers.ChatBot
 {

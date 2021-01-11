@@ -1,9 +1,8 @@
-﻿using System;
+﻿using SBoT.Connect.Abstractions.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Um.Connect.Abstractions;
 
-namespace SBoT.Code.Dto
+namespace SBoT.Connect.Abstractions.Dto
 {
     public class UserDto : IUser
     {
@@ -41,4 +40,5 @@ namespace SBoT.Code.Dto
 
         public Guid ApplicationId { get; set; }
     }
+
 }

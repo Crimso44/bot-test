@@ -184,7 +184,12 @@ namespace Eve
             webRequest.Method = method;
             webRequest.ContentType = "application/json; charset=utf-8";
             webRequest.Accept = "application/json";
+#if DEV
             webRequest.Credentials = CredentialCache.DefaultCredentials;
+#endif
+#if TEST05
+            webRequest.Credentials = new NetworkCredential("vtb4037877", "Slonslon442", "devcorp");
+#endif
             ServicePointManager.ServerCertificateValidationCallback = AcceptAllCertifications;
 
             return webRequest;

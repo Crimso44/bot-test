@@ -1,9 +1,7 @@
 ﻿using System.Linq;
 using ChatBot.Admin.CommonServices.Services.Abstractions;
-using Um.Abstractions.Core.Const;
-using Um.Connect.Abstractions;
-using SbtlifeConst = Um.Abstractions.SbtLife;
-using ChatBotConst = Um.Abstractions.ChatBot;
+using SBoT.Connect.Abstractions.Interfaces;
+using RoleConst = SBoT.Connect.Abstractions.RoleConst;
 
 namespace ChatBot.Admin.CommonServices.Services
 {
@@ -24,8 +22,7 @@ namespace ChatBot.Admin.CommonServices.Services
             get
             {
                 LazyInit(ref _isAdministrator, () => _user.Roles.Any(r =>
-                        r.Id == RoleConst.Administrator
-                            && (r.ScopeId == ScopeConst.SberbankTechnology || r.ScopeId == SbtlifeConst.ApplicationConst.SbtLife) ));
+                        r.Id == RoleConst.ChatBotAdministrator));
 
                 // ReSharper disable once PossibleInvalidOperationException
                 return _isAdministrator.Value;
@@ -37,7 +34,7 @@ namespace ChatBot.Admin.CommonServices.Services
             get
             {
                 LazyInit(ref _isChatBotEditor, () => _user.Roles.Any(r =>
-                    r.Id == ChatBotConst.RoleConst.ChatBotAdministrator));
+                    r.Id == RoleConst.ChatBotAdministrator));
 
                 // ReSharper disable once PossibleInvalidOperationException
                 return _isChatBotEditor.Value;
@@ -49,7 +46,7 @@ namespace ChatBot.Admin.CommonServices.Services
             get
             {
                 LazyInit(ref _isChatBotReport, () => _user.Roles.Any(r =>
-                    r.Id == ChatBotConst.RoleConst.ChatBotReports));
+                    r.Id == RoleConst.ChatBotReports));
 
                 // ReSharper disable once PossibleInvalidOperationException
                 return _isChatBotReport.Value;

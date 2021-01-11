@@ -66,7 +66,7 @@ namespace Eve
             InitializeComponent();
 
 #if DEV
-                _server = "http://localhost/_api/";
+                _server = "https://localhost:8045/";
 #endif
 #if TEST
                 _server = "https://new.sbt-dup-004.sigma.sbrf.ru/_api/";
@@ -80,6 +80,10 @@ namespace Eve
 #if PRE
                 _server = "https://new.sbt-osop-234.sigma.sbrf.ru/_api/";
 #endif
+#if TEST05
+                _server = "https://c534dev05v.corp.dev.vtb/_chat/";
+#endif
+
 
             _focusedMessage = chatHello;
 

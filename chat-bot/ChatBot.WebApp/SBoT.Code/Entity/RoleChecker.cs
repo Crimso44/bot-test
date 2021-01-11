@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using SBoT.Code.Entity.Interfaces;
 using SBoT.Code.Services.Abstractions;
-using Um.Connect.Abstractions;
-using Um.Abstractions.ChatBot;
-using CoreRoleConst = Um.Abstractions.Core.Const.RoleConst;
+using RoleConst = SBoT.Connect.Abstractions.RoleConst;
 
 namespace SBoT.Code.Entity
 {
@@ -22,12 +18,12 @@ namespace SBoT.Code.Entity
 
         public bool IsAdmin()
         {
-            return _user.User().Roles.Any(x => x.Id == RoleConst.ChatBotAdministrator || x.Id == CoreRoleConst.Administrator);
+            return _user.User().Roles.Any(x => x.Id == RoleConst.ChatBotAdministrator);
         }
 
         public bool IsReports()
         {
-            return _user.User().Roles.Any(x => x.Id == RoleConst.ChatBotReports || x.Id == RoleConst.ChatBotAdministrator || x.Id == CoreRoleConst.Administrator);
+            return _user.User().Roles.Any(x => x.Id == RoleConst.ChatBotReports || x.Id == RoleConst.ChatBotAdministrator);
         }
 
         public void CheckIsAdmin()

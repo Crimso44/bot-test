@@ -27,7 +27,6 @@ namespace Eve
                 return;
             }
 
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainDialog());

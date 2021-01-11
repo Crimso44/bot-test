@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using SBoT.Code.Classes;
 using System.Threading.Tasks;
+using SBoT.Connect.Abstractions.Dto;
 
 namespace SBoT.Code.Repository.Interfaces
 {

@@ -9,7 +9,7 @@ import {
     Grid,
     Row,
     Col
-} from "@sbt/react-ui-components";
+} from "@sbt/react-ui-components"
 
 interface ICategoryHeaderProps {
 

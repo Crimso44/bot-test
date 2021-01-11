@@ -20,12 +20,12 @@ import { StoreService } from "./services/StoreService";
 import { PermissionService } from "./services/PermissionService";
 import { IPortalState } from "./interfaces/IPortalState";
 import { IAppPageProps } from "./interfaces/IPortalPage";
-import { CHAT_BOT_ADMIN_HOST } from "./config";
+import { CHAT_BOT_ADMIN_HOST, CHAT_BOT_ROOT } from "./config";
 import * as Const from "./const/constants";
 import AuthService from './services/auth-service';
 import NotificationService from './services/notification-service';
 import { ModalService } from './services/modal-service';
-import * as RUIC from '@sbt/react-ui-components';
+import * as RUIC from "@sbt/react-ui-components";
 
 
 class MainApp extends React.Component<any, any> {

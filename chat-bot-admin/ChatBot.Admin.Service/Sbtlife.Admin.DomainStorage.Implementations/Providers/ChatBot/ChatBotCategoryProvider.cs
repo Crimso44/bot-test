@@ -16,7 +16,7 @@ using ChatBot.Admin.DomainStorage.Providers.Abstractions.ChatBot;
 using ChatBot.Admin.DomainStorage.Contexts.Entities.ChatBot;
 using ChatBot.Admin.CommonServices.Services.Abstractions;
 using ChatBot.Admin.DomainStorage.Contexts;
-using Um.Connect.Abstractions;
+using SBoT.Connect.Abstractions.Interfaces;
 
 namespace ChatBot.Admin.DomainStorage.Providers.ChatBot
 {

@@ -1,5 +1,4 @@
-﻿using Platform.Core.Common.Utilities;
-using ChatBot.Admin.ReadStorage.Specifications;
+﻿using ChatBot.Admin.ReadStorage.Specifications;
 
 namespace ChatBot.Admin.ReadStorage.Extensions
 {
@@ -18,7 +17,7 @@ namespace ChatBot.Admin.ReadStorage.Extensions
 
         public static void AdjustSearch(this GetCollectionSpecification specification)
         {
-            specification.Search = specification.Search.Optimize();
+            //???specification.Search = specification.Search.Optimize();
         }
 
         public static bool HasSearch(this GetCollectionSpecification specification)

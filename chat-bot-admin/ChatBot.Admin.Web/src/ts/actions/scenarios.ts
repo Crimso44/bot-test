@@ -523,8 +523,10 @@ export const editCategoryItem = (id: string): void =>
 export const getCategoryItem = (id: string): void =>
 {
     let query = new ItemQuery(StoreService.auth, StoreService.servicesApi, "chatbot");
+    console.log('getCategoryItem', id, StoreService.servicesApi);
     query.execute(id)
         .then((response: AxiosResponse) => {
+            console.log('getCategoryItem ok', response);
             StoreService.dispatch(Actions.categoryItemLoaded(response.data));
         })
         .catch((error: any) => {

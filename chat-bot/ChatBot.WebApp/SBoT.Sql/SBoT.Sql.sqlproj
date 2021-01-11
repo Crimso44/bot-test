@@ -97,27 +97,11 @@
     <Build Include="dbo\Views\vwModelLearningMarkup.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="SBoT.Sql.refactorlog" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="_Publish\sbtportalsql2m3.publish.xml" />
     <None Include="_Publish\sbt-osop-0235.xml" />
     <None Include="_Publish\sbt-dup-006.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <ArtifactReference Include="dacpac\Um.Storage.dacpac">
-      <HintPath>dacpac\Um.Storage.dacpac</HintPath>
-      <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
-      <DatabaseSqlCmdVariable>UserManagement</DatabaseSqlCmdVariable>
-    </ArtifactReference>
-  </ItemGroup>
-  <ItemGroup>
-    <SqlCmdVariable Include="UserManagement">
-      <DefaultValue>UserManagement</DefaultValue>
-      <Value>$(SqlCmdVar__1)</Value>
-    </SqlCmdVariable>
   </ItemGroup>
 </Project>

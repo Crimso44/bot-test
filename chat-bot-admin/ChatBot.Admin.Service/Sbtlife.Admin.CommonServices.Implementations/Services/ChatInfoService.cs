@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ChatBot.Admin.Common.Classes;
 using ChatBot.Admin.Common.Model.ChatBot;
 using ChatBot.Admin.CommonServices.Services.Abstractions;
 using Microsoft.Extensions.Options;
-using Um.Connect.Abstractions;
 
 namespace ChatBot.Admin.CommonServices.Services
 {
@@ -37,6 +35,8 @@ namespace ChatBot.Admin.CommonServices.Services
 
         public UserDto GetUserInfo(string sigmaLogin)
         {
+            return new UserDto() { SigmaLogin = sigmaLogin }; //!!!
+
             var us = _request.WebApiRequestGet<UserDtoSerializable>($"{_urls.Value.ChatInfo}/info/user", new Dictionary<string, object> { { "sigmaLogin", sigmaLogin } });
             if (us == null) return new UserDto() { SigmaLogin = sigmaLogin };
 

@@ -1,5 +1,5 @@
-﻿using System;
-using Um.Connect.Abstractions;
+﻿using SBoT.Connect.Abstractions.Interfaces;
+using System;
 
 namespace ChatBot.Admin.WebApi.UserManagementMock
 {
@@ -12,8 +12,8 @@ namespace ChatBot.Admin.WebApi.UserManagementMock
             ApplicationId = applicationId;
         }
 
-        public Guid Id { get; }
-        public Guid ScopeId { get; }
-        public Guid ApplicationId { get; }
+        public Guid Id { get; set;  }
+        public Guid ScopeId { get; set; }
+        public Guid ApplicationId { get; set; }
     }
 }

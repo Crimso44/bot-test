@@ -18,8 +18,6 @@ using NLog.Extensions.Logging;
 using SBoT.Code;
 using SBoT.Code.Classes;
 using SBoT.Code.Entity;
-using Um.Abstractions.Core.Const;
-using Um.Connect.Abstractions;
 using CodeBootstrapper = SBoT.Code.ModuleBootstraper;
 using DomainBootstrapper = SBoT.Domain.ModuleBootstraper;
 

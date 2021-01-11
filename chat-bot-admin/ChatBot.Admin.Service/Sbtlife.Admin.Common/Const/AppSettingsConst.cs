@@ -9,7 +9,7 @@ namespace ChatBot.Admin.Common.Const
             public const string DocumentStorage = "ConnectionStrings:DocumentStorage";
         }
 
-        public const string AspNetAppDevEnvirontment = "dev";
+        public const string AspNetAppDevEnvirontment = "Development";
         public const string AspNetAppTestEnvirontment = "test";
     }
 }

@@ -3,10 +3,11 @@
   <PropertyGroup>
     <ProjectGuid>{105928A3-2325-467F-A629-6BEC11A82A74}</ProjectGuid>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.23" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="RabbitMQ.Client" Version="5.1.0" />
   </ItemGroup>

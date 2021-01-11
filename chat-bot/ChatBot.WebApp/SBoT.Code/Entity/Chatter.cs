@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Extensions.Options;
 using SBoT.Code.Services.Abstractions;
 using ResponseDto = SBoT.Code.Dto.ResponseDto;
+using SBoT.Connect.Abstractions.Dto;
 
 namespace SBoT.Code.Entity
 {
@@ -19,7 +20,6 @@ namespace SBoT.Code.Entity
         private const int LinkCountLimit = 7;
 
         private readonly ISboTRepository _sBoTRepository;
-        private readonly IUsefulLinksRepository _usefulLinksRepository;
         private readonly IWordFormer _wordFormer;
         private readonly IUserInfoService _user;
         private readonly IRabbitWorker _rabbitWorker;
@@ -38,14 +38,13 @@ namespace SBoT.Code.Entity
         private readonly Guid _id = Guid.NewGuid();
 
         public Chatter(ISboTRepository sBoTRepository, IWordFormer wordFormer, IUserInfoService user, 
-            IUsefulLinksRepository usefulLinksRepository, ITimeMeasurer timeMeasurer, IElasticWorker elasticWorker,
+            ITimeMeasurer timeMeasurer, IElasticWorker elasticWorker,
             IRabbitWorker rabbitWorker, IFileTransformer fileTransformer, 
             IOptions<Config> config, IOptions<Urls> urls, IWebRequestProcess request, IRosterService rosterService, IInfoService infoService)
         {
             _sBoTRepository = sBoTRepository;
             _wordFormer = wordFormer;
             _user = user;
-            _usefulLinksRepository = usefulLinksRepository;
             _rabbitWorker = rabbitWorker;
             _elasticWorker = elasticWorker;
             _fileTransformer = fileTransformer;
@@ -223,7 +222,7 @@ namespace SBoT.Code.Entity
                 res.Responses = _wordFormer.CheckSequences(question, words, res.Responses);
             }
 
-            if (!isSilent && res.Responses.Any()) res.Links = _usefulLinksRepository.SearchLinks(res.NewQuestion);
+            //if (!isSilent && res.Responses.Any()) res.Links = _usefulLinksRepository.SearchLinks(res.NewQuestion);
 
             return res;
         }
@@ -344,18 +343,6 @@ namespace SBoT.Code.Entity
 
                 if (!isSilent)
                 {
-                    if (resps.Links != null && resps.Links.Any())
-                    {
-                        var linkTxt = _usefulLinksRepository.FormatLinks(resps.Links, LinkCountLimit);
-                        var respLinks = _sBoTRepository.GetResponse(Const.CategoriesReserved.UsefulLinksOnly);
-                        if (string.IsNullOrEmpty(respLinks.Response))
-                            def.Response = "Я нашла такие ссылки:<br/>" + linkTxt;
-                        else
-                            def.Response = string.Format(respLinks.Response, linkTxt);
-                        def.Rate = (decimal)0.5;
-                        def.ContextRate = (decimal)0.5;
-                    }
-
                     _sBoTRepository.UpdateHistory(histId, question, questOrig, context, def, false, "NoAnswer", false, null);
                 }
 
@@ -427,16 +414,6 @@ namespace SBoT.Code.Entity
                         }
                     }
 
-                    if (resps.Links != null && resps.Links.Any())
-                    {
-                        var linkTxt = _usefulLinksRepository.FormatLinks(resps.Links, LinkCountLimit);
-                        response.Response += "<br/>";
-                        var respLinks = _sBoTRepository.GetResponse(Const.CategoriesReserved.UsefulLinks);
-                        if (string.IsNullOrEmpty(respLinks.Response))
-                            response.Response += "А еще я нашла такие ссылки:<br/>" + linkTxt;
-                        else
-                            response.Response += string.Format(respLinks.Response, linkTxt);
-                    }
                 }
 
                 response.Response = FillResponseWithData(response.Response, roster);
@@ -784,10 +761,10 @@ namespace SBoT.Code.Entity
     public class ChatterTransient : Chatter, IChatterTransient
     {
         public ChatterTransient(ISboTRepository sBoTRepository, IWordFormer wordFormer, IUserInfoService user,
-            IUsefulLinksRepository usefulLinksRepository, ITimeMeasurer timeMeasurer, IElasticWorker elasticWorker,
+            ITimeMeasurer timeMeasurer, IElasticWorker elasticWorker,
             IRabbitWorker rabbitWorker, IFileTransformer fileTransformer,
             IOptions<Config> config, IOptions<Urls> urls, IWebRequestProcess request, IRosterService rosterService, IInfoService infoService) : 
-            base (sBoTRepository, wordFormer, user, usefulLinksRepository, timeMeasurer, elasticWorker, 
+            base (sBoTRepository, wordFormer, user, timeMeasurer, elasticWorker, 
                 rabbitWorker, fileTransformer, config, urls, request, rosterService, infoService)
         {
         }

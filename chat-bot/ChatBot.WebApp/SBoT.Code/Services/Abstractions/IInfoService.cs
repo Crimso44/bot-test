@@ -1,7 +1,5 @@
-﻿using SBoT.Code.Dto;
-using System;
+﻿using SBoT.Connect.Abstractions.Dto;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SBoT.Code.Services.Abstractions
 {

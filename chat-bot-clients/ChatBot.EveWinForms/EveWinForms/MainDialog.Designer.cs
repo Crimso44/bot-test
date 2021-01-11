@@ -32,21 +32,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainDialog));
             this.panel1 = new System.Windows.Forms.Panel();
             this.picClear = new System.Windows.Forms.PictureBox();
-            this.tPeople = new Eve.WaterMarkTextBox();
             this.picPeople = new System.Windows.Forms.PictureBox();
             this.picSend = new System.Windows.Forms.PictureBox();
-            this.tInput = new Eve.WaterMarkTextBox();
             this.pPeople = new System.Windows.Forms.Panel();
-            this.lbPeople = new Eve.ScrollableListBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lRosterCaption = new System.Windows.Forms.Label();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.trayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openDialogMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbPeople = new Eve.ScrollableListBox();
             this.pChatListTop = new Eve.ScrollablePanel();
             this.pChatList = new System.Windows.Forms.TableLayoutPanel();
             this.chatHello = new Eve.ChatMessage();
+            this.tPeople = new Eve.WaterMarkTextBox();
+            this.tInput = new Eve.WaterMarkTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPeople)).BeginInit();
@@ -86,23 +86,6 @@
             this.picClear.Visible = false;
             this.picClear.Click += new System.EventHandler(this.picClear_Click);
             // 
-            // tPeople
-            // 
-            this.tPeople.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tPeople.BackColor = System.Drawing.Color.White;
-            this.tPeople.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tPeople.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.tPeople.Location = new System.Drawing.Point(10, 8);
-            this.tPeople.Name = "tPeople";
-            this.tPeople.Size = new System.Drawing.Size(748, 15);
-            this.tPeople.TabIndex = 3;
-            this.tPeople.Visible = false;
-            this.tPeople.WaterMarkColor = System.Drawing.Color.Gray;
-            this.tPeople.WaterMarkText = "Выбор сотрудника...";
-            this.tPeople.TextChanged += new System.EventHandler(this.tPeople_TextChanged);
-            this.tPeople.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tPeople_KeyDown);
-            // 
             // picPeople
             // 
             this.picPeople.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -128,21 +111,6 @@
             this.picSend.TabStop = false;
             this.picSend.Click += new System.EventHandler(this.picSend_Click);
             // 
-            // tInput
-            // 
-            this.tInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tInput.BackColor = System.Drawing.Color.White;
-            this.tInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.tInput.Location = new System.Drawing.Point(38, 8);
-            this.tInput.Name = "tInput";
-            this.tInput.Size = new System.Drawing.Size(720, 15);
-            this.tInput.TabIndex = 0;
-            this.tInput.WaterMarkColor = System.Drawing.Color.Gray;
-            this.tInput.WaterMarkText = "Введите сообщение...";
-            this.tInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tInput_KeyDown);
-            // 
             // pPeople
             // 
             this.pPeople.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -156,23 +124,6 @@
             this.pPeople.Size = new System.Drawing.Size(778, 165);
             this.pPeople.TabIndex = 1;
             this.pPeople.Visible = false;
-            // 
-            // lbPeople
-            // 
-            this.lbPeople.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbPeople.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbPeople.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lbPeople.FormattingEnabled = true;
-            this.lbPeople.IntegralHeight = false;
-            this.lbPeople.ItemHeight = 20;
-            this.lbPeople.Items.AddRange(new object[] {
-            "Не выбрано"});
-            this.lbPeople.Location = new System.Drawing.Point(0, 19);
-            this.lbPeople.Name = "lbPeople";
-            this.lbPeople.Size = new System.Drawing.Size(776, 144);
-            this.lbPeople.TabIndex = 0;
-            this.lbPeople.Scroll += new Eve.ScrollableListBox.ScrollableListBoxScrollDelegate(this.lbPeople_Scroll);
-            this.lbPeople.Click += new System.EventHandler(this.lbPeople_Click);
             // 
             // panel2
             // 
@@ -199,30 +150,48 @@
             // 
             this.trayIcon.ContextMenuStrip = this.trayMenu;
             this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-            this.trayIcon.Text = "Чат-бот Ева";
+            this.trayIcon.Text = "Чат-бот Инна";
             this.trayIcon.DoubleClick += new System.EventHandler(this.trayIcon_DoubleClick);
             // 
             // trayMenu
             // 
+            this.trayMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.trayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openDialogMenuItem,
             this.exitMenuItem});
             this.trayMenu.Name = "trayMenu";
-            this.trayMenu.Size = new System.Drawing.Size(181, 48);
+            this.trayMenu.Size = new System.Drawing.Size(225, 80);
             // 
             // openDialogMenuItem
             // 
             this.openDialogMenuItem.Name = "openDialogMenuItem";
-            this.openDialogMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openDialogMenuItem.Text = "Открыть чат с Евой";
+            this.openDialogMenuItem.Size = new System.Drawing.Size(224, 24);
+            this.openDialogMenuItem.Text = "Открыть чат с Инной";
             this.openDialogMenuItem.Click += new System.EventHandler(this.openDialogMenuItem_Click);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(211, 24);
             this.exitMenuItem.Text = "Выход";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
+            // 
+            // lbPeople
+            // 
+            this.lbPeople.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbPeople.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbPeople.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.lbPeople.FormattingEnabled = true;
+            this.lbPeople.IntegralHeight = false;
+            this.lbPeople.ItemHeight = 20;
+            this.lbPeople.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.lbPeople.Location = new System.Drawing.Point(0, 19);
+            this.lbPeople.Name = "lbPeople";
+            this.lbPeople.Size = new System.Drawing.Size(776, 144);
+            this.lbPeople.TabIndex = 0;
+            this.lbPeople.Scroll += new Eve.ScrollableListBox.ScrollableListBoxScrollDelegate(this.lbPeople_Scroll);
+            this.lbPeople.Click += new System.EventHandler(this.lbPeople_Click);
             // 
             // pChatListTop
             // 
@@ -249,7 +218,7 @@
             this.pChatList.Name = "pChatList";
             this.pChatList.RowCount = 1;
             this.pChatList.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.pChatList.Size = new System.Drawing.Size(800, 70);
+            this.pChatList.Size = new System.Drawing.Size(800, 71);
             this.pChatList.TabIndex = 2;
             this.pChatList.ClientSizeChanged += new System.EventHandler(this.pChatList_ClientSizeChanged);
             // 
@@ -261,8 +230,40 @@
             this.chatHello.Location = new System.Drawing.Point(3, 3);
             this.chatHello.Message = "...";
             this.chatHello.Name = "chatHello";
-            this.chatHello.Size = new System.Drawing.Size(790, 64);
+            this.chatHello.Size = new System.Drawing.Size(790, 65);
             this.chatHello.TabIndex = 0;
+            // 
+            // tPeople
+            // 
+            this.tPeople.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tPeople.BackColor = System.Drawing.Color.White;
+            this.tPeople.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tPeople.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.tPeople.Location = new System.Drawing.Point(10, 8);
+            this.tPeople.Name = "tPeople";
+            this.tPeople.Size = new System.Drawing.Size(748, 19);
+            this.tPeople.TabIndex = 3;
+            this.tPeople.Visible = false;
+            this.tPeople.WaterMarkColor = System.Drawing.Color.Gray;
+            this.tPeople.WaterMarkText = "Выбор сотрудника...";
+            this.tPeople.TextChanged += new System.EventHandler(this.tPeople_TextChanged);
+            this.tPeople.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tPeople_KeyDown);
+            // 
+            // tInput
+            // 
+            this.tInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tInput.BackColor = System.Drawing.Color.White;
+            this.tInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.tInput.Location = new System.Drawing.Point(38, 8);
+            this.tInput.Name = "tInput";
+            this.tInput.Size = new System.Drawing.Size(720, 19);
+            this.tInput.TabIndex = 0;
+            this.tInput.WaterMarkColor = System.Drawing.Color.Gray;
+            this.tInput.WaterMarkText = "Введите сообщение...";
+            this.tInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tInput_KeyDown);
             // 
             // MainDialog
             // 
@@ -274,7 +275,7 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainDialog";
-            this.Text = "Чат с Евой";
+            this.Text = "Чат с Инной";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainDialog_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

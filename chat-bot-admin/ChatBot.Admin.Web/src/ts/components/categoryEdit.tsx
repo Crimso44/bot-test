@@ -45,7 +45,7 @@ import {
     Checkbox,
     ButtonTextedWithIcon,
     Confirm
-} from "@sbt/react-ui-components";
+} from "@sbt/react-ui-components"
 
 interface ICategoryEditProps {
     id: number;
@@ -120,7 +120,7 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
     sources: IDropdownItem[] = [];
 
     componentDidMount() {
-        //console.log('componentDidMount', this.props);
+        console.log('componentDidMount', this.props);
         if (/*!this.props.item &&*/ !this.props.isLoading)
             Scenarios.getCategoryItem(this.props.id.toString());
         if (this.props.isAdding) {
