@@ -12,6 +12,7 @@ namespace ChatBot.Admin.ReadStorage.Contexts.ChatBot
         public string Response { get; set; }
 
         public string SetContext { get; set; }
+        public int? SetMode { get; set; }
 
         public bool? IsDefault { get; set; }
         public bool? IsTest { get; set; }

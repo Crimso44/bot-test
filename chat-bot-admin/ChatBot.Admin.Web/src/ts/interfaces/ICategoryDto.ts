@@ -9,6 +9,7 @@ export interface ICategoryDto {
     response:string;
 
     setContext: string;
+    setMode?: string;
 
     isDefault?: boolean;
     isTest?: boolean;

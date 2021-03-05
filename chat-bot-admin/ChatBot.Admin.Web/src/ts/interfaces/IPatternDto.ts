@@ -6,6 +6,7 @@ export interface IPatternDto {
 
     context: string;
     onlyContext: boolean;
+    mode: string;
 
     phrase: string;
 

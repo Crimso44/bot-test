@@ -44,6 +44,7 @@ namespace ChatBot.Admin.DomainStorage.Providers.ChatBot
                 Name = category.Name,
                 Response = category.Response,
                 SetContext = category.SetContext,
+                SetMode = string.IsNullOrEmpty(category.SetMode) ? (int?)null : int.Parse(category.SetMode),
                 PartitionId = category.PartitionId,
                 ChangedOn = category.ChangedOn,
                 ChangedBy = category.ChangedBy,
@@ -112,6 +113,7 @@ namespace ChatBot.Admin.DomainStorage.Providers.ChatBot
             OptionalHelper.SafeUpdate(v => entity.Name = v, category.Name);
             OptionalHelper.SafeUpdate(v => entity.Response = v.Replace("= '", "='").Replace("= \"", "=\""), category.Response);
             OptionalHelper.SafeUpdate(v => entity.SetContext = v, category.SetContext);
+            OptionalHelper.SafeUpdate(v => entity.SetMode = v, category.SetMode);
             OptionalHelper.SafeUpdate(v => entity.PartitionId = v, category.PartitionId);
             entity.ChangedOn = category.ChangedOn;
             entity.ChangedBy = category.ChangedBy;
@@ -276,6 +278,7 @@ namespace ChatBot.Admin.DomainStorage.Providers.ChatBot
                     CategoryId = catEntityId,
                     Phrase = pat.Phrase,
                     Context = pat.Context,
+                    Mode = pat.Mode,
                     OnlyContext = pat.OnlyContext,
                     WordCount = pat.Words.Count()
                 };
@@ -458,6 +461,7 @@ namespace ChatBot.Admin.DomainStorage.Providers.ChatBot
                 patEntity.CategoryId = pattern.CategoryId;
                 patEntity.Phrase = pattern.Phrase;
                 patEntity.Context = pattern.Context;
+                patEntity.Mode = pattern.Mode;
                 patEntity.OnlyContext = pattern.OnlyContext;
                 patEntity.WordCount = pattern.Words.Count();
             }
@@ -468,6 +472,7 @@ namespace ChatBot.Admin.DomainStorage.Providers.ChatBot
                     CategoryId = pattern.CategoryId,
                     Phrase = pattern.Phrase,
                     Context = pattern.Context,
+                    Mode = pattern.Mode,
                     OnlyContext = pattern.OnlyContext,
                     WordCount = pattern.Words.Count()
                 };

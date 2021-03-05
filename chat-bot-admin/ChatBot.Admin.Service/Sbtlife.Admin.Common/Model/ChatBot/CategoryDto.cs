@@ -11,6 +11,7 @@ namespace ChatBot.Admin.Common.Model.ChatBot
         public string Response { get; set; }
 
         public string SetContext { get; set; }
+        public string SetMode { get; set; }
 
         public bool IsDefault { get; set; }
         public bool? IsTest { get; set; }

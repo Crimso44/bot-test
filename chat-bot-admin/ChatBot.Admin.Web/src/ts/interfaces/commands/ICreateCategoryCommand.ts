@@ -6,6 +6,7 @@ export interface ICreateCategoryCommand {
     name: string;
     response:string;
     setContext: string;
+    setMode?: string;
     isIneligible: boolean;
     isDisabled: boolean;
     requiredRoster?: string;

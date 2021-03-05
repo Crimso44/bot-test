@@ -11,9 +11,9 @@ namespace SBoT.Code.Entity.Interfaces
     public interface IChatter
     {
         Guid Id();
-        AnswerDto AskBot(string source, string question, string context);
-        AnswerDto AskBotEx(string source, string question, string context, bool isSilent, bool isMto, bool isCheckSbt);
-        AnswerDto AskBotByButton(string source, string question, string context, string category, bool isCheckSbt);
+        AnswerDto AskBot(string source, string question, string context, int? mode);
+        AnswerDto AskBotEx(string source, string question, string context, int? mode, bool isSilent, bool isMto, bool isCheckSbt);
+        AnswerDto AskBotByButton(string source, string question, string context, int? mode, string category, bool isCheckSbt);
         AnswerDto AskBotByButtonMail(string source, string mail, string question, string category);
         AnswerDto AskBotByMail(string source, string question, string mail);
         bool SetLike(Pair<int> like);

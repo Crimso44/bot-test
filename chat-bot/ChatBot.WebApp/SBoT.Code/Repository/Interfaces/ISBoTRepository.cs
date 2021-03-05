@@ -9,10 +9,10 @@ namespace SBoT.Code.Repository.Interfaces
 {
     public interface ISboTRepository
     {
-        List<ResponseDto> FindResponse(List<string> words, string context);
-        List<ResponseDto> FindResponseByWeights(List<WeightDto> weights, int wordCount, string context);
+        List<ResponseDto> FindResponse(List<string> words, string context, int? mode);
+        List<ResponseDto> FindResponseByWeights(List<WeightDto> weights, int wordCount, string context, int? mode);
         ResponseDto GetCategoryByName(string name, bool isTest);
-        ResponseDto DefaultResponse();
+        ResponseDto DefaultResponse(int? mode);
         ResponseDto GetResponse(string category);
         List<ResponseDto> GetResponsesFromOriginIds(List<Guid> originIds);
         int SaveHistory(string source, string question, string origQuestion, string context, ResponseDto response, bool isButton, string type);

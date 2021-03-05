@@ -19,5 +19,8 @@ namespace SBoT.Code.Dto
 
         [DataMember]
         public string Source { get; set; }
+
+        [DataMember]
+        public int? Mode { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace ChatBot.WebApp.Helpers
                 cnt++;
                 if (!d.OriginalQuestion.StartsWith("("))
                 {
-                    var answer1 = _chatter.AskBotEx("Rep", d.OriginalQuestion, d.ContextIn, true, true, false);
+                    var answer1 = _chatter.AskBotEx("Rep", d.OriginalQuestion, d.ContextIn, null, true, true, false);
                     res01.Add(new ReportMtoDto()
                     {
                         Question = d.OriginalQuestion,

@@ -15,6 +15,7 @@ namespace ChatBot.Admin.CommandHandlers.Commands.ChatBot
         public Optional<string> Response { get; set; }
 
         public Optional<string> SetContext { get; set; }
+        public Optional<int?> SetMode { get; set; }
 
         public Optional<Guid?> PartitionId { get; set; }
 

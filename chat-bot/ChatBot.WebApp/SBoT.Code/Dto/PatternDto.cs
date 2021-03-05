@@ -14,6 +14,7 @@ namespace SBoT.Code.Dto
 
         public string Context { get; set; }
         public bool? OnlyContext { get; set; }
+        public int? Mode { get; set; }
 
         public string Phrase { get; set; }
 

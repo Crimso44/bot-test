@@ -17,5 +17,6 @@
     [IsIneligible] BIT NULL, 
     [RequiredRoster] NCHAR(4) NULL, 
     [IsDisabled] BIT NULL, 
+    [SetMode] INT NULL, 
     CONSTRAINT [FK_Category_Partition] FOREIGN KEY ([PartitionId]) REFERENCES [Partition]([Id])
 )

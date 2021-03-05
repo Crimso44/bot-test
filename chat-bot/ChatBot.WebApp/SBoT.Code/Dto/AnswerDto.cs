@@ -18,6 +18,9 @@ namespace SBoT.Code.Dto
         public string Context;
 
         [DataMember]
+        public int? Mode;
+
+        [DataMember]
         public decimal Rate;
 
         [DataMember]

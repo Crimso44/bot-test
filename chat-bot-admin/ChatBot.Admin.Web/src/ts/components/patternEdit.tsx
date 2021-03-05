@@ -32,6 +32,8 @@ interface IPatternEditProps {
     onWordTypeSelect(e: IDropdownItem, word: IWordDto);
     onPatternContextClear(): void;
     onPatternContextFocusOut(value: string);
+    onPatternModeClear(): void;
+    onPatternModeFocusOut(value: string);
     onPatternOnlyContextChanged(value: any);
     onChangePatternClick();
     onDeletePatternClick(patternId: number): void;
@@ -105,9 +107,25 @@ export class PatternEdit extends React.PureComponent<IPatternEditProps, IPattern
         res.push(
             <Row key="context">
                 <Col baseSize={2} breakpointSizes={['md-6', 'sm-12']}>
+                    <div className={"pattern-context-text"}>Режим</div>
+                </Col>
+                <Col baseSize={2} breakpointSizes={['md-6', 'sm-12']}>
+                    <div className={"pattern-context-row"}>
+                        <TextField
+                            hasTooltip={false}
+                            placeholder="Введите номер режима"
+                            isRequired={false}
+                            onClear={this.props.onPatternModeClear}
+                            onFocusOut={this.props.onPatternModeFocusOut}
+                            isDisabled={this.props.isReadOnly}
+                            value={pattern.mode || ""}
+                        />
+                    </div>
+                </Col>
+                <Col baseSize={2} breakpointSizes={['md-6', 'sm-12']}>
                     <div className={"pattern-context-text"}>Контекст</div>
                 </Col>
-                <Col baseSize={7} breakpointSizes={['md-6', 'sm-12']}>
+                <Col baseSize={3} breakpointSizes={['md-6', 'sm-12']}>
                     <div className={"pattern-context-row"}>
                         <TextField
                             hasTooltip={false}

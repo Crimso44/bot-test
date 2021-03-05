@@ -57,7 +57,7 @@ namespace SBoT.Code.Repository
         }
 
 
-        public List<ResponseDto> FindResponse(List<string> words, string context)
+        public List<ResponseDto> FindResponse(List<string> words, string context, int? mode)
         {
             var t = DateTime.Now;
             var res = (from wf in _ctx.WordForms
@@ -67,7 +67,8 @@ namespace SBoT.Code.Repository
                        join c in _ctx.Categories on p.CategoryId equals c.Id
                        where !(c.IsTest ?? false) && !(c.IsDisabled ?? false) && !c.Name.StartsWith("--") && 
                             words.Contains(wf.Form) && 
-                            (!(p.OnlyContext ?? false) || p.Context == context)
+                            (!(p.OnlyContext ?? false) || p.Context == context) &&
+                            ((p.Mode ?? 0) == (mode ?? 0))
                        select new { c, p, w, wf }).ToList();
 
             var tt = DateTime.Now;
@@ -82,10 +83,12 @@ namespace SBoT.Code.Repository
                 Category = g.Key.c.Name,
                 Response = g.Key.c.Response,
                 SetContext = g.Key.c.SetContext,
+                SetMode = g.Key.c.SetMode,
 
                 PatternId = g.Key.p.Id,
                 PatternPhrase = g.Key.p.Phrase,
                 Context = g.Key.p.Context,
+                Mode = g.Key.p.Mode,
                 PatternCnt = g.Key.p.WordCount.Value,
                 FoundCnt = g.Count(),
                 Rate = ((decimal)(g.Count() * g.Count())) / wrdCnt / g.Key.p.WordCount.Value,
@@ -103,7 +106,7 @@ namespace SBoT.Code.Repository
             return pts;
         }
 
-        public List<ResponseDto> FindResponseByWeights(List<WeightDto> weights, int wordCount, string context)
+        public List<ResponseDto> FindResponseByWeights(List<WeightDto> weights, int wordCount, string context, int? mode)
         {
             var t = DateTime.Now;
 
@@ -113,7 +116,8 @@ namespace SBoT.Code.Repository
                        join c in _ctx.Categories on p.CategoryId equals c.Id
                        where !(c.IsTest ?? false) && !(c.IsDisabled ?? false) && !c.Name.StartsWith("--") &&
                             patIds.Contains(p.Id) &&
-                            (!(p.OnlyContext ?? false) || p.Context == context)
+                            (!(p.OnlyContext ?? false) || p.Context == context) &&
+                            ((p.Mode ?? 0) == (mode ?? 0))
                        select new { c, p }).ToList();
 
             var tt = DateTime.Now;
@@ -132,10 +136,12 @@ namespace SBoT.Code.Repository
                 Category = g.Key.c.Name,
                 Response = g.Key.c.Response,
                 SetContext = g.Key.c.SetContext,
+                SetMode = g.Key.c.SetMode,
 
                 PatternId = g.Key.p.Id,
                 PatternPhrase = g.Key.p.Phrase,
                 Context = g.Key.p.Context,
+                Mode = g.Key.p.Mode,
                 PatternCnt = g.Key.p.WordCount.Value,
                 FoundCnt = g.Count(),
                 Rate = ((decimal)(g.Sum(x => x.Weight) * g.Sum(x => x.Weight))) / wordCount / g.Key.p.WordCount.Value,
@@ -166,6 +172,7 @@ namespace SBoT.Code.Repository
                 Category = resp.Name,
                 Response = resp.Response,
                 SetContext = resp.SetContext,
+                SetMode = resp.SetMode,
                 Rate = 1
             };
         }
@@ -181,15 +188,16 @@ namespace SBoT.Code.Repository
                 Category = x.Name,
                 Response = x.Response,
                 SetContext = x.SetContext,
+                SetMode = x.SetMode,
                 Rate = 1,
                 IsMto = true
             }).ToList();
         }
 
 
-        public ResponseDto DefaultResponse()
+        public ResponseDto DefaultResponse(int? mode)
         {
-            return GetResponse(Const.CategoriesReserved.Default);
+            return GetResponse(Const.CategoriesReserved.Default + (mode.HasValue && mode != 0 ? $"_{mode}" : ""));
         }
 
 
@@ -200,6 +208,7 @@ namespace SBoT.Code.Repository
             return new ResponseDto
             {
                 Response = resp?.Response,
+                SetMode = resp?.SetMode,
                 Rate = 0
             };
         }

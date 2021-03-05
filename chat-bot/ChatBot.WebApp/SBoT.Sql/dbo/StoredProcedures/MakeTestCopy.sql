@@ -27,16 +27,16 @@ where c.IsTest = 1
 	and (@SubPartition is null or @SubPartition = c.PartitionId)
 	and (@Partition is null or @Partition = pt.ParentId)
 
-insert into Category (Name, Response, SetContext, IsDefault, IsTest, IsDisabled, IsChanged, ParentId, IsAdded, PartitionId, ChangedOn, ChangedBy, PublishedOn, OriginId, IsIneligible, RequiredRoster)
-select c.Name, c.Response, c.SetContext, c.IsDefault, 1, c.IsDisabled, 0, c.Id, 0, c.PartitionId, c.ChangedOn, c.ChangedBy, c.PublishedOn, IsNull(c.OriginId, NewId()), c.IsIneligible, c.RequiredRoster
+insert into Category (Name, Response, SetContext, SetMode, IsDefault, IsTest, IsDisabled, IsChanged, ParentId, IsAdded, PartitionId, ChangedOn, ChangedBy, PublishedOn, OriginId, IsIneligible, RequiredRoster)
+select c.Name, c.Response, c.SetContext, c.SetMode, c.IsDefault, 1, c.IsDisabled, 0, c.Id, 0, c.PartitionId, c.ChangedOn, c.ChangedBy, c.PublishedOn, IsNull(c.OriginId, NewId()), c.IsIneligible, c.RequiredRoster
 From Category c
 left join Partition pt on pt.Id = c.PartitionId
 where IsNull(c.IsTest, 0) = 0
 	and (@SubPartition is null or @SubPartition = c.PartitionId)
 	and (@Partition is null or @Partition = pt.ParentId)
 
-Insert into Pattern (CategoryId, Phrase, WordCount, Context, OnlyContext)
-select ct.Id, p.Phrase, p.WordCount, p.Context, p.OnlyContext
+Insert into Pattern (CategoryId, Phrase, WordCount, Context, OnlyContext, Mode)
+select ct.Id, p.Phrase, p.WordCount, p.Context, p.OnlyContext, Mode
 from Pattern p
 join Category c on c.Id = p.CategoryId
 join Category ct on ct.ParentId = c.Id

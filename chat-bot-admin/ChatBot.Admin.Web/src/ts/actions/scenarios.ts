@@ -502,6 +502,7 @@ export const addCategoryItemInit = (partId?: string, partCaption?: string, subpa
         name: '',
         response: '',
         setContext: '',
+        setMode: '',
         isIneligible: false,
         isDisabled: false,
         requiredRoster: null,

@@ -34,28 +34,32 @@
             this.picClear = new System.Windows.Forms.PictureBox();
             this.picPeople = new System.Windows.Forms.PictureBox();
             this.picSend = new System.Windows.Forms.PictureBox();
-            this.pPeople = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lRosterCaption = new System.Windows.Forms.Label();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.trayMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openDialogMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbPeople = new Eve.ScrollableListBox();
+            this.pMode = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bCancelMode = new System.Windows.Forms.LinkLabel();
             this.pChatListTop = new Eve.ScrollablePanel();
             this.pChatList = new System.Windows.Forms.TableLayoutPanel();
             this.chatHello = new Eve.ChatMessage();
+            this.pPeople = new System.Windows.Forms.Panel();
+            this.lbPeople = new Eve.ScrollableListBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lRosterCaption = new System.Windows.Forms.Label();
             this.tPeople = new Eve.WaterMarkTextBox();
             this.tInput = new Eve.WaterMarkTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPeople)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSend)).BeginInit();
-            this.pPeople.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.trayMenu.SuspendLayout();
+            this.pMode.SuspendLayout();
             this.pChatListTop.SuspendLayout();
             this.pChatList.SuspendLayout();
+            this.pPeople.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -111,41 +115,6 @@
             this.picSend.TabStop = false;
             this.picSend.Click += new System.EventHandler(this.picSend_Click);
             // 
-            // pPeople
-            // 
-            this.pPeople.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pPeople.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pPeople.Controls.Add(this.lbPeople);
-            this.pPeople.Controls.Add(this.panel2);
-            this.pPeople.ForeColor = System.Drawing.Color.Silver;
-            this.pPeople.Location = new System.Drawing.Point(10, 260);
-            this.pPeople.Name = "pPeople";
-            this.pPeople.Size = new System.Drawing.Size(778, 165);
-            this.pPeople.TabIndex = 1;
-            this.pPeople.Visible = false;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
-            this.panel2.Controls.Add(this.lRosterCaption);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(776, 19);
-            this.panel2.TabIndex = 1;
-            // 
-            // lRosterCaption
-            // 
-            this.lRosterCaption.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lRosterCaption.ForeColor = System.Drawing.Color.DimGray;
-            this.lRosterCaption.Location = new System.Drawing.Point(0, 0);
-            this.lRosterCaption.Name = "lRosterCaption";
-            this.lRosterCaption.Size = new System.Drawing.Size(776, 19);
-            this.lRosterCaption.TabIndex = 0;
-            this.lRosterCaption.Text = "Выберите сотрудника";
-            this.lRosterCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // trayIcon
             // 
             this.trayIcon.ContextMenuStrip = this.trayMenu;
@@ -160,7 +129,7 @@
             this.openDialogMenuItem,
             this.exitMenuItem});
             this.trayMenu.Name = "trayMenu";
-            this.trayMenu.Size = new System.Drawing.Size(225, 80);
+            this.trayMenu.Size = new System.Drawing.Size(225, 52);
             // 
             // openDialogMenuItem
             // 
@@ -172,37 +141,53 @@
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.exitMenuItem.Size = new System.Drawing.Size(224, 24);
             this.exitMenuItem.Text = "Выход";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
-            // lbPeople
+            // pMode
             // 
-            this.lbPeople.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbPeople.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbPeople.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.lbPeople.FormattingEnabled = true;
-            this.lbPeople.IntegralHeight = false;
-            this.lbPeople.ItemHeight = 20;
-            this.lbPeople.Items.AddRange(new object[] {
-            "Не выбрано"});
-            this.lbPeople.Location = new System.Drawing.Point(0, 19);
-            this.lbPeople.Name = "lbPeople";
-            this.lbPeople.Size = new System.Drawing.Size(776, 144);
-            this.lbPeople.TabIndex = 0;
-            this.lbPeople.Scroll += new Eve.ScrollableListBox.ScrollableListBoxScrollDelegate(this.lbPeople_Scroll);
-            this.lbPeople.Click += new System.EventHandler(this.lbPeople_Click);
+            this.pMode.Controls.Add(this.bCancelMode);
+            this.pMode.Controls.Add(this.label1);
+            this.pMode.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pMode.Location = new System.Drawing.Point(0, 400);
+            this.pMode.Name = "pMode";
+            this.pMode.Size = new System.Drawing.Size(800, 18);
+            this.pMode.TabIndex = 3;
+            this.pMode.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(151, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Создание обращения";
+            // 
+            // bCancelMode
+            // 
+            this.bCancelMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bCancelMode.AutoSize = true;
+            this.bCancelMode.Location = new System.Drawing.Point(715, 1);
+            this.bCancelMode.Name = "bCancelMode";
+            this.bCancelMode.Size = new System.Drawing.Size(73, 17);
+            this.bCancelMode.TabIndex = 1;
+            this.bCancelMode.TabStop = true;
+            this.bCancelMode.Text = "Отменить";
+            this.bCancelMode.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.bCancelMode_LinkClicked);
             // 
             // pChatListTop
             // 
             this.pChatListTop.AutoScroll = true;
             this.pChatListTop.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pChatListTop.Controls.Add(this.pChatList);
+            this.pChatListTop.Controls.Add(this.pPeople);
             this.pChatListTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pChatListTop.Location = new System.Drawing.Point(0, 0);
             this.pChatListTop.MinimumSize = new System.Drawing.Size(10, 10);
             this.pChatListTop.Name = "pChatListTop";
-            this.pChatListTop.Size = new System.Drawing.Size(800, 418);
+            this.pChatListTop.Size = new System.Drawing.Size(800, 400);
             this.pChatListTop.TabIndex = 2;
             this.pChatListTop.Scrolled += new Eve.ScrollablePanel.ScrollablePanelScrollDelegate(this.pChatListTop_Scrolled);
             // 
@@ -232,6 +217,58 @@
             this.chatHello.Name = "chatHello";
             this.chatHello.Size = new System.Drawing.Size(790, 65);
             this.chatHello.TabIndex = 0;
+            // 
+            // pPeople
+            // 
+            this.pPeople.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pPeople.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pPeople.Controls.Add(this.lbPeople);
+            this.pPeople.Controls.Add(this.panel2);
+            this.pPeople.ForeColor = System.Drawing.Color.Silver;
+            this.pPeople.Location = new System.Drawing.Point(13, 246);
+            this.pPeople.Name = "pPeople";
+            this.pPeople.Size = new System.Drawing.Size(778, 165);
+            this.pPeople.TabIndex = 1;
+            this.pPeople.Visible = false;
+            // 
+            // lbPeople
+            // 
+            this.lbPeople.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lbPeople.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbPeople.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.lbPeople.FormattingEnabled = true;
+            this.lbPeople.IntegralHeight = false;
+            this.lbPeople.ItemHeight = 20;
+            this.lbPeople.Items.AddRange(new object[] {
+            "Не выбрано"});
+            this.lbPeople.Location = new System.Drawing.Point(0, 19);
+            this.lbPeople.Name = "lbPeople";
+            this.lbPeople.Size = new System.Drawing.Size(776, 144);
+            this.lbPeople.TabIndex = 0;
+            this.lbPeople.Scroll += new Eve.ScrollableListBox.ScrollableListBoxScrollDelegate(this.lbPeople_Scroll);
+            this.lbPeople.Click += new System.EventHandler(this.lbPeople_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
+            this.panel2.Controls.Add(this.lRosterCaption);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(776, 19);
+            this.panel2.TabIndex = 1;
+            // 
+            // lRosterCaption
+            // 
+            this.lRosterCaption.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lRosterCaption.ForeColor = System.Drawing.Color.DimGray;
+            this.lRosterCaption.Location = new System.Drawing.Point(0, 0);
+            this.lRosterCaption.Name = "lRosterCaption";
+            this.lRosterCaption.Size = new System.Drawing.Size(776, 19);
+            this.lRosterCaption.TabIndex = 0;
+            this.lRosterCaption.Text = "Выберите сотрудника";
+            this.lRosterCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tPeople
             // 
@@ -270,8 +307,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pPeople);
             this.Controls.Add(this.pChatListTop);
+            this.Controls.Add(this.pMode);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainDialog";
@@ -282,12 +319,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.picClear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPeople)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSend)).EndInit();
-            this.pPeople.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.trayMenu.ResumeLayout(false);
+            this.pMode.ResumeLayout(false);
+            this.pMode.PerformLayout();
             this.pChatListTop.ResumeLayout(false);
             this.pChatListTop.PerformLayout();
             this.pChatList.ResumeLayout(false);
+            this.pPeople.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -310,6 +349,9 @@
         private ChatMessage chatHello;
         private ScrollablePanel pChatListTop;
         private System.Windows.Forms.PictureBox picClear;
+        private System.Windows.Forms.Panel pMode;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel bCancelMode;
     }
 }
 

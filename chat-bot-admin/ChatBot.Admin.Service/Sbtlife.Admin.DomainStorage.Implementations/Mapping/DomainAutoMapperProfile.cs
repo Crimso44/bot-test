@@ -9,7 +9,8 @@ namespace ChatBot.Admin.DomainStorage.Mapping
         public DomainAutoMapperProfile()
         {
             // ChatBot
-            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, CategoryDto>()
+                .ForMember(d => d.SetMode, o => o.MapFrom(s => s.SetMode.HasValue ? s.SetMode.ToString() : ""));
             CreateMap<Partition, PartitionDto>()
                 .ForMember(d => d.Title, o => o.MapFrom(s => s.Name));
             CreateMap<LearningDto, Learning>();

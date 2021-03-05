@@ -73,6 +73,7 @@ interface ICategoryEditState {
     catName: string;
     catResponse: string;
     catSetContext: string;
+    catSetMode: string;
     hasChanges: boolean;
     hasPatternChanges: boolean;
     patterns: IPatternDto[];
@@ -107,6 +108,7 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
         catName: null,
         catResponse: null,
         catSetContext: null,
+        catSetMode: null,
         hasChanges: false,
         hasPatternChanges: false,
         isIneligible: false,
@@ -161,6 +163,7 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
             catName: nextProps.item.name,
             catResponse: nextProps.item.response,
             catSetContext: nextProps.item.setContext,
+            catSetMode: nextProps.item.setMode,
             isIneligible: nextProps.item.isIneligible,
             isDisabled: nextProps.item.isDisabled,
             requiredRoster: nextProps.item.requiredRoster,
@@ -190,6 +193,7 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
                 name: this.state.catName || null,
                 response: this.state.catResponse || null,
                 setContext: this.state.catSetContext || null,
+                setMode: this.state.catSetMode || null,
                 isIneligible: this.state.isIneligible || null,
                 isDisabled: this.state.isDisabled || null,
                 requiredRoster: this.state.requiredRoster || null,
@@ -216,6 +220,9 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
 
             if (this.state.catSetContext !== this.props.item.setContext)
                 payload.setContext = this.state.catSetContext || null;
+
+            if (this.state.catSetMode !== this.props.item.setMode)
+                payload.setMode = this.state.catSetMode || null;
 
             if (this.state.catSubpartId !== this.props.item.partitionId)
                 payload.partitionId = this.state.catSubpartId || null;
@@ -343,6 +350,19 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
         });
     }
 
+    onCategorySetModeFocusOut = (value: string) => {
+
+        value = StringHelpers.normalize(value);
+
+        if (value === this.state.catSetMode)
+            return;
+
+        this.setState({
+            catSetMode: value,
+            hasChanges: true
+        });
+    }
+
     onCategoryIsIneligibleChanged = (value: any) => {
         this.setState({
             isIneligible: value.checked,
@@ -375,6 +395,24 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
         }
     }
 
+    onPatternModeFocusOut = (value: string) => {
+
+        value = StringHelpers.normalize(value);
+        var pattern = this.getSelectedPattern();
+        if (pattern) {
+
+            if (value === pattern.mode)
+                return;
+
+            pattern.mode = value;
+            this.setState({
+                selectedPattern: { id: pattern.id },
+                patterns: [...this.state.patterns],
+                hasPatternChanges: true
+            });
+        }
+    }
+
     onCategoryTextClear = (): void => {
         this.setState({
             catName: null,
@@ -389,10 +427,29 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
         });
     }
 
+    onCategorySetModeClear = (): void => {
+        this.setState({
+            catSetMode: null,
+            hasChanges: true
+        });
+    }
+
     onPatternContextClear = (): void => {
         var pattern = this.getSelectedPattern();
         if (pattern) {
             pattern.context = '';
+            this.setState({
+                selectedPattern: { id: pattern.id },
+                patterns: [...this.state.patterns],
+                hasPatternChanges: true
+            });
+        }
+    }
+
+    onPatternModeClear = (): void => {
+        var pattern = this.getSelectedPattern();
+        if (pattern) {
+            pattern.mode = '';
             this.setState({
                 selectedPattern: { id: pattern.id },
                 patterns: [...this.state.patterns],
@@ -461,6 +518,8 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
                 onPatternContextClear={this.onPatternContextClear}
                 onPatternContextFocusOut={this.onPatternContextFocusOut}
                 onPatternOnlyContextChanged={this.onPatternOnlyContextChanged}
+                onPatternModeClear={this.onPatternModeClear}
+                onPatternModeFocusOut={this.onPatternModeFocusOut}
                 onChangePatternClick={this.onChangePatternClick}
                 onDeletePatternClick={this.onDeletePatternClick}
                 onPatternSelect={this.onPatternSelect}
@@ -573,7 +632,7 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
             pattern = this.getSelectedPattern();
             pattern.phrase = text;
         } else if(this.state.addingPattern) {
-            pattern = {id: 0, categoryId: this.props.id, context:'', onlyContext:false, phrase: text, wordCount: 0, words: null};
+            pattern = {id: 0, categoryId: this.props.id, context:'', onlyContext:false, mode: '', phrase: text, wordCount: 0, words: null};
         }
         if (pattern) {
             let query = new PatternCalculateQuery(StoreService.auth, StoreService.servicesApi, "chatbotwords/pattern/calculate");
@@ -582,7 +641,7 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
                     if (this.state.changingPattern) {
                         pattern = this.getSelectedPattern();
                     } else if(this.state.addingPattern) {
-                        pattern = {id: 0, categoryId: this.props.id, context:'', onlyContext:false, phrase: '', wordCount: 0, words: null};
+                        pattern = {id: 0, categoryId: this.props.id, context:'', onlyContext:false, mode: '', phrase: '', wordCount: 0, words: null};
                         this.state.patterns.push(pattern);
                         this.setState({patterns: this.state.patterns});
                     }
@@ -649,6 +708,7 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
             name: this.state.catName,
             response: this.state.catResponse,
             setContext: this.state.catSetContext,
+            setMode: this.state.catSetMode,
             isIneligible: this.state.isIneligible,
             isDisabled: this.state.isDisabled,
             requiredRoster: this.state.requiredRoster,
@@ -866,7 +926,7 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
                         </Col>
                     </Row>
                     <Row>
-                        <Col baseSize={6} breakpointSizes={['md-3', 'sm-6']}>
+                        <Col baseSize={3} breakpointSizes={['md-3', 'sm-6']}>
                             <div className={'first-col'}>
                                 <TextField
                                     title="Установить контекст"
@@ -877,6 +937,20 @@ class CategoryEditApp extends MainElement<ICategoryEditProps, ICategoryEditState
                                     isDisabled={this.isReadOnly()}
                                     onFocusOut={this.onCategorySetContextFocusOut}
                                     value={this.state.catSetContext || ""}
+                                />
+                            </div>
+                        </Col>
+                        <Col baseSize={3} breakpointSizes={['md-3', 'sm-6']}>
+                            <div className={'first-col'}>
+                                <TextField
+                                    title="Установить режим"
+                                    hasTooltip={false}
+                                    placeholder="Введите номер режима"
+                                    isRequired={false}
+                                    onClear={this.onCategorySetModeClear}
+                                    isDisabled={this.isReadOnly()}
+                                    onFocusOut={this.onCategorySetModeFocusOut}
+                                    value={this.state.catSetMode || ""}
                                 />
                             </div>
                         </Col>

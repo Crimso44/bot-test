@@ -15,6 +15,7 @@ namespace ChatBot.Admin.ReadStorage.Contexts.ChatBot
 
         public string Context { get; set; }
         public bool? OnlyContext { get; set; }
+        public int? Mode { get; set; }
 
         public Guid? CategoryOriginId { get; set; }
         public string CategoryName { get; set; }

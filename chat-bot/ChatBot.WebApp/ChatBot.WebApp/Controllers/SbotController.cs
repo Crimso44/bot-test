@@ -31,13 +31,13 @@ namespace ChatBot.WebApp.Controllers
         [HttpPost("ask")]
         public AnswerDto AskBot([FromBody] RequestDto question)
         {
-            return _chatter.AskBot(question.variables.Source, question.variables.Title, question.variables.Id);
+            return _chatter.AskBot(question.variables.Source, question.variables.Title, question.variables.Id, question.variables.Mode);
         }
 
         [HttpGet("ask")]
-        public AnswerDto AskBot(string question, string context)
+        public AnswerDto AskBot(string question, string context, int? mode = null)
         {
-            return _chatter.AskBot("Get", question, context);
+            return _chatter.AskBot("Get", question, context, mode);
         }
 
         [HttpGet("askByMail")]
@@ -55,7 +55,7 @@ namespace ChatBot.WebApp.Controllers
         [HttpPost("askByButton")]
         public AnswerDto AskByButton([FromBody] RequestDto question)
         {
-            return _chatter.AskBotByButton(question.variables.Source, question.variables.Title, question.variables.Id, question.variables.Category, false);
+            return _chatter.AskBotByButton(question.variables.Source, question.variables.Title, question.variables.Id, question.variables.Mode, question.variables.Category, false);
         }
 
         [HttpPost("setLike")]

@@ -15,6 +15,8 @@ namespace ChatBot.Admin.DomainStorage.Model.Abstractions.ChatBot
 
         public Optional<string> SetContext { get; set; }
 
+        public Optional<int?> SetMode { get; set; }
+
         public Optional<Guid?> PartitionId { get; set; }
 
         public List<PatternDto> Patterns { get; set; }

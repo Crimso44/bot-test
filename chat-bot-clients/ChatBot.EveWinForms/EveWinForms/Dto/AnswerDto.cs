@@ -20,6 +20,9 @@ namespace Eve
         public string Context;
 
         [DataMember]
+        public int? Mode;
+
+        [DataMember]
         public decimal Rate;
 
         [DataMember]

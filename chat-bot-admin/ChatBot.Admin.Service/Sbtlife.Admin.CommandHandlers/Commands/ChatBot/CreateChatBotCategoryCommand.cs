@@ -12,6 +12,7 @@ namespace ChatBot.Admin.CommandHandlers.Commands.ChatBot
         public string Response { get; set; }
 
         public string SetContext { get; set; }
+        public int? SetMode { get; set; }
 
         public Guid? PartitionId { get; set; }
         public bool? IsIneligible { get; set; }

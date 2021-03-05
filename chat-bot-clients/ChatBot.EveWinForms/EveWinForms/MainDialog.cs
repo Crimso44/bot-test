@@ -21,6 +21,7 @@ namespace Eve
         private List<ChatMessage> _messagesHistoryToLoad = new List<ChatMessage>();
 
         private string _context = "";
+        private int _mode = 0;
         private bool _isRequiredRoster = false;
         private bool _noMoreRoster = false;
         private bool _waitingRoster = false;
@@ -39,7 +40,7 @@ namespace Eve
                     picSend.Visible = value == "";
                     tPeople.Visible = value != "";
                     tInput.Visible = value == "";
-                    picPeople.Visible = value == "";
+                    picPeople.Visible = value == "" && Mode == 0;
                     picClear.Visible = value != "";
                     if (value == "")
                     {
@@ -60,6 +61,30 @@ namespace Eve
                 }
             } 
         }
+
+        private int Mode
+        {
+            get { return _mode; }
+            set
+            {
+                _mode = value;
+                if (_mode == 1)
+                {
+                    picPeople.Visible = false;
+                    tInput.Multiline = true;
+                    panel1.Height = 113;
+                    tInput.Height = 100;
+                    pMode.Visible = true;
+                } else
+                {
+                    tInput.Multiline = false;
+                    tInput.Height = 19;
+                    panel1.Height = 32;
+                    pMode.Visible = false;
+                }
+            }
+        }
+
 
         public MainDialog()
         {
@@ -132,7 +157,7 @@ namespace Eve
                 tInput.Focus();
 
                 _webRequest.PostQuestion($"{_server}sbot/ask", 
-                    new RequestDto() { variables = new RequestDataDto() { Title = question, Id = _context } }, true);
+                    new RequestDto() { variables = new RequestDataDto() { Title = question, Id = _context, Mode = Mode } }, true);
 
             }
         }
@@ -241,7 +266,7 @@ namespace Eve
         {
             chatHello.SendTime = DateTime.Now;
             chatHello.IsEve = true;
-            chatHello.Message = $"Привет, {e.StringAnswer}!\r\nМеня зовут Ева!\r\nНапиши свой вопрос о Компании или рабочих процессах, и я постараюсь ответить на него.";
+            chatHello.Message = $"Привет, {e.StringAnswer}!\r\nМеня зовут Инна!\r\nНапиши свой вопрос о Компании или рабочих процессах, и я постараюсь ответить на него.";
         }
 
         void OnHistoryReceived(object sender, HistoryReceivedEventArgs e)
@@ -328,7 +353,7 @@ namespace Eve
             tInput.Focus();
 
             _webRequest.PostQuestion($"{_server}sbot/askByButton",
-                new RequestDto() { variables = new RequestDataDto() { Title = question, Category = category, Id = _context } }, true);
+                new RequestDto() { variables = new RequestDataDto() { Title = question, Category = category, Id = _context, Mode = Mode } }, true);
 
         }
 
@@ -341,9 +366,12 @@ namespace Eve
             }
         }
 
+
         private void ShowAnswer(AnswerDto res)
         {
             _context = res.Context;
+            Mode = res.Mode ?? 0;
+
             _isRequiredRoster = false;
             var answer = res.Title;
 
@@ -641,5 +669,9 @@ namespace Eve
             }
         }
 
+        private void bCancelMode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Mode = 0;
+        }
     }
 }

@@ -46,6 +46,7 @@ namespace ChatBot.Admin.CommandHandlers.Handlers.Implementations.ChatBot
             category.Name = command.Name;
             category.Response = command.Response;
             category.SetContext = command.SetContext;
+            category.SetMode = command.SetMode;
             category.PartitionId = command.PartitionId;
             category.Patterns = command.Patterns;
             category.IsChangedPatterns = command.IsChangedPatterns;

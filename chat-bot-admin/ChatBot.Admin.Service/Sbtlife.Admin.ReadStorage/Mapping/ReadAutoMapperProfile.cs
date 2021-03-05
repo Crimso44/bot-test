@@ -15,6 +15,7 @@ namespace ChatBot.Admin.ReadStorage.Mapping
             // ChatBot
             CreateMap<Category, CategoryDto>()
                 .ForMember(d => d.RequiredRoster, a => a.MapFrom(s => s.RequiredRoster.Trim()))
+                .ForMember(d => d.SetMode, o => o.MapFrom(s => s.SetMode.HasValue ? s.SetMode.ToString() : ""))
                 /*.ForMember(d => d.RequiredRosterName, a => a.MapFrom(s => 
                     ChatBotConst.Roster.Sources.ContainsKey(s.RequiredRoster.Trim()) ?
                         ChatBotConst.Roster.Sources[s.RequiredRoster.Trim()].Name : null

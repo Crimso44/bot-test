@@ -11,7 +11,9 @@ namespace SBoT.Code.Dto
         public string Category;
         public string Response;
         public string SetContext;
+        public int? SetMode;
         public string Context;
+        public int? Mode;
         public decimal Rate;
         public decimal ContextRate;
 

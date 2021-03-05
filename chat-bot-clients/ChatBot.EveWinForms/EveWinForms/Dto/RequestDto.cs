@@ -28,6 +28,10 @@ namespace Eve
 
         [DataMember]
         public string Category { get; set; }
+
+        [DataMember]
+        public int? Mode { get; set; }
+
     }
 
     [DataContract]

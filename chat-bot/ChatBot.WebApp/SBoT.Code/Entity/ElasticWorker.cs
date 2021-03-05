@@ -34,7 +34,7 @@ namespace SBoT.Code.Entity
             _elasticClient.IndexMany(words, SearchIndexName);
         }
 
-        public List<ResponseDto> FindResponse(List<string> words, string context)
+        public List<ResponseDto> FindResponse(List<string> words, string context, int? mode)
         {
             var fixedWords = _sboTRepository.GetFixedWords();
             var found = new List<WeightDto>();
@@ -76,7 +76,7 @@ namespace SBoT.Code.Entity
                 found.AddRange(weights);
             }
 
-            return _sboTRepository.FindResponseByWeights(found, words.Count, context);
+            return _sboTRepository.FindResponseByWeights(found, words.Count, context, mode);
         }
 
     }

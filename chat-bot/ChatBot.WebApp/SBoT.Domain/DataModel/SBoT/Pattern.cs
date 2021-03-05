@@ -14,6 +14,7 @@ namespace SBoT.Domain.DataModel.SBoT
         public int? WordCount { get; set; }
 
         public string Context { get; set; }
+        public int? Mode { get; set; }
         public bool? OnlyContext { get; set; }
     }
 }

@@ -6,5 +6,6 @@
     [WordCount] INT NULL, 
     [Context] NVARCHAR(255) NULL, 
     [OnlyContext] BIT NULL, 
+    [Mode] INT NULL, 
     CONSTRAINT [FK_Pattern_Category] FOREIGN KEY ([CategoryId]) REFERENCES [Category]([Id])
 )

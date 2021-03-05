@@ -9,6 +9,6 @@ namespace SBoT.Code.Entity.Interfaces
     public interface IElasticWorker
     {
         void ReindexWords();
-        List<ResponseDto> FindResponse(List<string> words, string context);
+        List<ResponseDto> FindResponse(List<string> words, string context, int? mode);
     }
 }

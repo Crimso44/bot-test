@@ -113,7 +113,7 @@ namespace SBoT.Code.Entity
             return string.Join(" ", qWords.Words);
         }
 
-        public ResponseListDto FindResponseWithSequences(int histId, string question, string context, bool isSilent, bool isMto)
+        public ResponseListDto FindResponseWithSequences(int histId, string question, string context, int? mode, bool isSilent, bool isMto)
         {
             var isTranslitChecked = false;
             var isSimplyAsked = false;
@@ -174,7 +174,7 @@ namespace SBoT.Code.Entity
             {
                 if (_config.Value.IsElastic)
                 {
-                    var respEl = _elasticWorker.FindResponse(words, context);
+                    var respEl = _elasticWorker.FindResponse(words, context, mode);
                     respEl = _wordFormer.CheckSequences(question, words, respEl);
                     if (respEl.Any())
                     {
@@ -184,7 +184,7 @@ namespace SBoT.Code.Entity
                 }
                 else
                 {
-                    res.Responses = _sBoTRepository.FindResponse(words, context);
+                    res.Responses = _sBoTRepository.FindResponse(words, context, mode);
                     res.Responses = _wordFormer.CheckSequences(question, words, res.Responses);
                     isSimplyAsked = true;
                 }
@@ -197,11 +197,11 @@ namespace SBoT.Code.Entity
                 List<ResponseDto> respTrans;
                 if (_config.Value.IsElastic)
                 {
-                    respTrans = _elasticWorker.FindResponse(words, context);
+                    respTrans = _elasticWorker.FindResponse(words, context, mode);
                 }
                 else
                 {
-                    respTrans = _sBoTRepository.FindResponse(words, context);
+                    respTrans = _sBoTRepository.FindResponse(words, context, mode);
                 }
                 respTrans = _wordFormer.CheckSequences(questTrans, words, respTrans);
 
@@ -218,7 +218,7 @@ namespace SBoT.Code.Entity
 
             if (!res.Responses.Any() && !isSimplyAsked)
             {
-                res.Responses = _sBoTRepository.FindResponse(words, context);
+                res.Responses = _sBoTRepository.FindResponse(words, context, mode);
                 res.Responses = _wordFormer.CheckSequences(question, words, res.Responses);
             }
 
@@ -237,7 +237,7 @@ namespace SBoT.Code.Entity
         ///<summary>
         /// Отпиливаем приветствия в начале вопроса (Привет, Ева! Скажи ...)
         ///</summary>
-        private ResponseListDto TryToDeleteHello(int histId, string question, string context, bool isSilent, bool isMto)
+        private ResponseListDto TryToDeleteHello(int histId, string question, string context, int? mode, bool isSilent, bool isMto)
         {
             var res = new ResponseListDto() { NewQuestion = question, IsTransliterated = false, IsDizzy = false };
             question = question.Trim();
@@ -254,7 +254,7 @@ namespace SBoT.Code.Entity
                 {
                     split[0] = "";
                     res.NewQuestion = string.Join(" ", split).Trim();
-                    var newResps = FindResponseWithSequences(histId, res.NewQuestion, context, isSilent, isMto);
+                    var newResps = FindResponseWithSequences(histId, res.NewQuestion, context, mode, isSilent, isMto);
                     res.Responses = newResps.Responses;
                     if (!ComparePhrases(res.NewQuestion, newResps.NewQuestion))
                     {
@@ -272,18 +272,18 @@ namespace SBoT.Code.Entity
             return res;
         }
 
-        public AnswerDto AskBot(string source, string question, string context)
+        public AnswerDto AskBot(string source, string question, string context, int? mode)
         {
-            return AskBotEx(source, question, context, false, true, false);
+            return AskBotEx(source, question, context, mode, false, true, false);
         }
 
         public AnswerDto AskBotByMail(string source, string question, string mail)
         {
             _user.SetCurrentUserByMail(mail);
-            return AskBotEx(source, question, null, false, true, true);
+            return AskBotEx(source, question, null, null, false, true, true);
         }
 
-        public AnswerDto AskBotEx(string source, string question, string context, bool isSilent, bool isMto, bool isCheckSbt)
+        public AnswerDto AskBotEx(string source, string question, string context, int? mode, bool isSilent, bool isMto, bool isCheckSbt)
         {
             ResponseDto response;
 
@@ -312,6 +312,7 @@ namespace SBoT.Code.Entity
                         Rate = response.Rate,
                         Title = response.Response,
                         Context = context,
+                        Mode = mode,
                         IsLikeable = false,
                         QuestionChanged = question,
                         IsMtoAnswer = false,
@@ -322,14 +323,14 @@ namespace SBoT.Code.Entity
             }
 
 
-            var resps = TryToDeleteHello(histId, question, context, isSilent, isMto);
+            var resps = TryToDeleteHello(histId, question, context, mode, isSilent, isMto);
             if (resps.Responses.Any())
             {
                 question = resps.NewQuestion;
             }
             else
             {
-                resps = FindResponseWithSequences(histId, question, context, isSilent, isMto);
+                resps = FindResponseWithSequences(histId, question, context, mode, isSilent, isMto);
                 if (resps.Responses.Any() && !ComparePhrases(question, resps.NewQuestion))
                 {
                     question = resps.NewQuestion;
@@ -339,7 +340,7 @@ namespace SBoT.Code.Entity
 
             if (!resps.Responses.Any())
             {
-                var def = _sBoTRepository.DefaultResponse();
+                var def = _sBoTRepository.DefaultResponse(mode);
 
                 if (!isSilent)
                 {
@@ -348,7 +349,8 @@ namespace SBoT.Code.Entity
 
                 var defRes = new AnswerDto
                 {
-                    Id = histId, Rate = def.Rate, Title = def.Response, Context = context, IsLikeable = false, QuestionChanged = resps.NewQuestion,
+                    Id = histId, Rate = def.Rate, Title = def.Response, Context = context, Mode = def.SetMode ?? mode, 
+                    IsLikeable = false, QuestionChanged = resps.NewQuestion,
                     IsMtoAnswer = resps.IsMtoAnswer, ModelResponse = resps.ModelResponse
                 };
                 return defRes;
@@ -382,6 +384,7 @@ namespace SBoT.Code.Entity
                     Rate = resps.Responses[0].ContextRate,
                     Response = resp,
                     Context = context,
+                    Mode = mode,
                     IsMto = resps.Responses[0].IsMto
                 };
             }
@@ -425,6 +428,7 @@ namespace SBoT.Code.Entity
                 Rate = response.Rate,
                 Title = response.Response,
                 Context = string.IsNullOrEmpty(response.SetContext) ? response.Context : response.SetContext,
+                Mode = response.SetMode.HasValue ? response.SetMode : response.Mode,
                 IsLikeable = !response.IsDefault,
                 QuestionChanged = resps.NewQuestion,
                 IsMto = response.IsMto,
@@ -453,11 +457,11 @@ namespace SBoT.Code.Entity
         public AnswerDto AskBotByButtonMail(string source, string mail, string question, string category)
         {
             _user.SetCurrentUserByMail(mail);
-            return AskBotByButton(source, question, null, category, true);
+            return AskBotByButton(source, question, null, null, category, true);
         }
 
 
-        public AnswerDto AskBotByButton(string source, string question, string context, string category, bool isCheckSbt)
+        public AnswerDto AskBotByButton(string source, string question, string context, int? mode, string category, bool isCheckSbt)
         {
             ResponseDto response;
             var roster = new Dictionary<string, RosterDto>();
@@ -475,6 +479,7 @@ namespace SBoT.Code.Entity
                         Rate = response.Rate,
                         Title = response.Response,
                         Context = context,
+                        Mode = mode,
                         IsLikeable = false,
                         QuestionChanged = question,
                         IsMtoAnswer = false,
@@ -508,6 +513,7 @@ namespace SBoT.Code.Entity
                 Rate = response.Rate,
                 Title = response.Response,
                 Context = string.IsNullOrEmpty(response.SetContext) ? context : response.SetContext,
+                Mode = response.SetMode.HasValue ? response.SetMode : mode,
                 IsLikeable = !response.IsDefault && response.Category != "dislike"
             };
             if (res.Title.Contains("<xrst") || context == "another") res.IsLikeable = false;
@@ -653,10 +659,10 @@ namespace SBoT.Code.Entity
                 {
                     cntAll++;
                     var now = DateTime.Now;
-                    var answer0 = AskBotEx("Rep", d.OriginalQuestion, d.ContextIn, true, false, false);
+                    var answer0 = AskBotEx("Rep", d.OriginalQuestion, d.ContextIn, null, true, false, false);
                     time0 += (DateTime.Now - now);
                     now = DateTime.Now;
-                    var answer1 = AskBotEx("Rep", d.OriginalQuestion, d.ContextIn, true, true, false);
+                    var answer1 = AskBotEx("Rep", d.OriginalQuestion, d.ContextIn, null, true, true, false);
                     time1 += (DateTime.Now - now);
                     if (answer0.Title != answer1.Title)
                     {
@@ -695,10 +701,10 @@ namespace SBoT.Code.Entity
             {
                 cnt++;
                 var now = DateTime.Now;
-                var answer0 = AskBotEx("Rep", d, "", true, false, false);
+                var answer0 = AskBotEx("Rep", d, "", null, true, false, false);
                 time0 += (DateTime.Now - now);
                 now = DateTime.Now;
-                var answer1 = AskBotEx("Rep", d, "", true, true, false);
+                var answer1 = AskBotEx("Rep", d, "", null, true, true, false);
                 time1 += (DateTime.Now - now);
 
                 if (answer0.Title != answer1.Title) cnt01++;
@@ -738,7 +744,7 @@ namespace SBoT.Code.Entity
                 cnt++;
                 if (!d.OriginalQuestion.StartsWith("("))
                 {
-                    var answer1 = AskBotEx("Rep", d.OriginalQuestion, d.ContextIn, true, true, false);
+                    var answer1 = AskBotEx("Rep", d.OriginalQuestion, d.ContextIn, null, true, true, false);
                     res01.Add(new ReportMtoDto()
                     {
                         Question = d.OriginalQuestion,

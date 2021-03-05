@@ -6,6 +6,7 @@ export interface IEditCategoryCommand {
     name?: string;
     response?:string;
     setContext?: string;
+    setMode?: string;
     patterns?: IPatternDto[];
     isChangedPatterns?: boolean;
     isIneligible?: boolean;

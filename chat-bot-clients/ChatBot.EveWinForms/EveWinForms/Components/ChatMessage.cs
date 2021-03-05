@@ -73,7 +73,7 @@ namespace Eve
                 {
                     lSendTime.Text = value.ToString("d MMM yyyy", CultureInfo.CreateSpecificCulture("ru-RU")) + " г., " + lSendTime.Text;
                 }
-                lEveSendTime.Text = "Ева " + lSendTime.Text;
+                lEveSendTime.Text = "Инна " + lSendTime.Text;
             } 
         }
 

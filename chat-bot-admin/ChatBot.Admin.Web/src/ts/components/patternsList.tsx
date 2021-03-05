@@ -86,7 +86,7 @@ class PatternsApp extends MainElement<IPatternsProps, IPatternsState>{
             changingPatterns: true,
             changingPhrase: {
                 id: 0,
-                context: "", onlyContext: false, phrase: "", wordCount: 0, words: [],
+                context: "", onlyContext: false, mode: "", phrase: "", wordCount: 0, words: [],
                 categoryId: +(this.props.filter.category ? this.props.filter.category.id : null)},
             changingCategoryName: this.props.filter.category ? this.props.filter.category.title : null
         });
@@ -264,6 +264,33 @@ class PatternsApp extends MainElement<IPatternsProps, IPatternsState>{
     }
 
 
+    onPatternModeClear = (): void => {
+        var pattern = this.state.changingPhrase;
+        if (pattern) {
+            pattern.mode = '';
+            this.setState({
+                changingPhrase: {...pattern}
+            });
+        }
+    }
+
+    onPatternModeFocusOut = (value: string) => {
+
+        value = StringHelpers.normalize(value);
+        var pattern = this.state.changingPhrase;
+        if (pattern) {
+
+            if (value === pattern.mode)
+                return;
+
+            pattern.mode = value;
+            this.setState({
+                changingPhrase: {...pattern}
+            });
+        }
+    }
+
+
     onPatternOnlyContextChanged = (value: any) => {
         var pattern = this.state.changingPhrase;
         if (pattern) {
@@ -425,6 +452,8 @@ class PatternsApp extends MainElement<IPatternsProps, IPatternsState>{
                             onPatternContextClear={this.onPatternContextClear}
                             onPatternContextFocusOut={this.onPatternContextFocusOut}
                             onPatternOnlyContextChanged={this.onPatternOnlyContextChanged}
+                            onPatternModeClear={this.onPatternModeClear}
+                            onPatternModeFocusOut={this.onPatternModeFocusOut}
                             onChangePatternClick={this.onChangePatternClick}
                             onDeletePatternClick={this.onDeletePatternClick}
                             onPatternSelect={this.onPatternSelect}
